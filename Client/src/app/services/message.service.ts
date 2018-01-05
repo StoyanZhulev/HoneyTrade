@@ -1,18 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs/Subject";
-import { Notification } from "../models/notification.model";
+import { Message } from "../models/message.model";
 
 
 @Injectable()
 export class MessageService {
-    private messageCountSource = new Subject<number>();
-
-    public messageCountRecieved$ = this.messageCountSource.asObservable();
+    private messagesSource = new Subject<Message[]>();
+    public messagesRecieved$ = this.messagesSource.asObservable();
 
     constructor(
     ){};
 
-    updateUnreadMessageCount(data){
-        this.messageCountSource.next(data);
+    updateMessages(data){
+        this.messagesSource.next(data);
     }
 }

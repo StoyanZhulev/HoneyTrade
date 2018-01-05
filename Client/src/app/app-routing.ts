@@ -9,7 +9,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 
 export const routes: Routes = [
-  { path: '',component: HomeComponent, pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: 'home', component: HomeComponent },
 

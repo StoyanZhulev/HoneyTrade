@@ -2,34 +2,41 @@ const Message = require('mongoose').model('Message');
 const Notification = require('mongoose').model('Notification');
 const Admin = require('mongoose').model('Admin');
 const Subscription = require('mongoose').model('Subscription');
+const Order = require('mongoose').model('Order');
 
 
-module.exports =  (server) => {
+
+module.exports = (server) => {
     let io = require('socket.io')(server);
 
-    io.on('connection', socket => {
+    io.on('connection', (socket) => {
 
-        socket.on('userEmail', userEmail => {
+        socket.on('userEmail', async (userEmail) => {
             socket['userEmail'] = userEmail;
-            Message.find({ recieverEmail: socket.userEmail }).then(messages => {
-                socket.emit('unreadMessageCount', messages.filter(m => m.isRead === false).length);
-                Notification.find({ recieverEmail: socket.userEmail }).then(nots => {
-                    socket.emit('notifications', nots);
-                })
-            })
+            let messages = await Message.find({ recieverEmail: socket.userEmail })
+            socket.emit('messages', messages)
 
-            Admin.findOne({ email: userEmail }).then(a => {
-                Subscription.find().then(subs => {
-                    socket.emit('subscriptions', subs);
-                })
-            }).catch(e => { })
-            
+            let nots = await Notification.find({ recieverEmail: socket.userEmail })
+            socket.emit('notifications', nots);
+
+
+
+            let admin = await Admin.findOne({ email: userEmail })
+            if (admin) {
+                let subs = await Subscription.find()
+                socket.emit('admin-subscriptions', subs);
+
+                let orders = await Order.find().populate('product')
+                socket.emit('orders', orders);    
+
+            }
+           
             socket.on('disconnect', () => {
                 console.log(`Deleting socket: ${socket.id}`);
             });
         })
 
     });
-    
+
     return io;
 }

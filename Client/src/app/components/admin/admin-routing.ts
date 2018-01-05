@@ -1,6 +1,18 @@
-import { Routes } from "@angular/router"
-import {AdminComponent } from './admin.component'
+import { Routes } from "@angular/router";
+import { AdminComponent } from './admin/admin.component';
+import { UsersComponent } from "./users/users.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { OrdersComponent } from "./orders/orders.component";
 
 export const routes: Routes = [
-  {path: '', pathMatch: 'full',  component: AdminComponent },
+  {
+    path: '', component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: 'users', component:  UsersComponent},
+      { path: 'notifications', component: NotificationsComponent },
+      { path: 'orders', component: OrdersComponent },
+      
+    ]
+  },
 ]

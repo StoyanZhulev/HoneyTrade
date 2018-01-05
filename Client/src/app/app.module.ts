@@ -25,6 +25,9 @@ import { HeaderService } from './services/heeader.service';
 import { SocketService } from './services/socket.service';
 import { MessageService } from './services/message.service';
 
+import { AdminSubscriptionService } from './services/admin/admin-subsciptions/admin-subscriptions.service';
+import { AdminUserService } from './services/admin/admin-users/admin-users.service';
+import { AdminOrdersService } from './services/admin/admin-orders/admin-orders.service';
 
 
 
@@ -46,8 +49,6 @@ import { AdminModule } from './components/admin/admin.module';
     SharedModule,
     ReactiveFormsModule,
     CookieModule.forRoot(),
-    AuthenticationModule,
-    AdminModule
   ],
   providers: [
     NotificationService,
@@ -56,6 +57,9 @@ import { AdminModule } from './components/admin/admin.module';
     MessageService,
     AutorizationService,
     SocketService,
+    AdminSubscriptionService,
+    AdminUserService,
+    AdminOrdersService,
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: ErrorInterceptor,

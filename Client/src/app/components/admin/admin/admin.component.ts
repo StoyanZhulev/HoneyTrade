@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
-import { HeaderService } from '../../services/heeader.service';
-import { SocketService } from '../../services/socket.service';
+import { HeaderService } from '../../../services/heeader.service';
+import { SocketService } from '../../../services/socket.service';
+import { AdminOrdersService } from '../../../services/admin/admin-orders/admin-orders.service';
+import { Order } from '../../../models/order.model';
+
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
@@ -9,18 +12,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  public orders: Order[];
   constructor(
     private cookieService: CookieService,
     private headerService: HeaderService,
     private socketService: SocketService,
-    private router: Router
-  ) { 
+    private router: Router,
+    private adminOrdersService: AdminOrdersService,
 
+  ) { 
+    this.adminOrdersService.ordersRecieved$.subscribe(data => {
+      console.log('recieving orders from admin component')
+      this.orders = data;
+    })
   }
 
   ngOnInit() {
-    console.log('ADMIIIIIIIIIIIIIIIIIIIIIIIIIIN')
   }
 
   logout() {

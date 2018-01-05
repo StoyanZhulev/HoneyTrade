@@ -8,42 +8,60 @@ import { NotificationService } from './notification.service';
 import { MessageService } from './message.service';
 
 import { CompilerConfig } from '@angular/compiler/src/config';
+import { AdminSubscriptionService } from './admin/admin-subsciptions/admin-subscriptions.service';
+import { AdminOrdersService } from './admin/admin-orders/admin-orders.service';
 
 @Injectable()
 export class SocketService {
-  private url = 'http://localhost:3000/';  
+  private url = 'http://localhost:3000/';
   private socket;
-  
+
 
   constructor(
     private cookieService: CookieService,
     private notificationService: NotificationService,
-    private messageService: MessageService
-  ){}
+    private messageService: MessageService,
+    private adminSubscriptionService: AdminSubscriptionService,
+    private adminOrdersService: AdminOrdersService
+  ) { }
 
-  disconnect(){
+  disconnect() {
     this.socket.disconnect();
   }
 
   connect(email: string) {
-      this.socket = io(this.url);
-     
-      if(email){
-        this.socket.emit('userEmail', email);
+    this.socket = io(this.url);
+
+    if (email) {
+      this.socket.emit('userEmail', email);
+
+      if (email === 'admin@honeymarket.com') {
+        this.socket.on('admin-subscribtions', subs => {
+          this.adminSubscriptionService.updateSubscriptions(subs);
+        })
+
+        this.socket.on('orders', orders => {
+          console.log('incomin ordereeeeers')
+          this.adminOrdersService.updateOrders(orders);
+        })
       }
-      this.socket.on('notifications', nots => {
-        this.notificationService.updateNotifications(nots);
-      })
+    }
+ 
+  
+    this.socket.on('notifications', nots => {
+      this.notificationService.updateNotifications(nots);
+    })
 
-      this.socket.on('unreadMessageCount', count => {
-        this.messageService.updateUnreadMessageCount(count);
-      })
-      return () => {
-        this.socket.disconnect();
-      };  
-  }  
+    this.socket.on('messages', count => {
+      this.messageService.updateMessages(count);
+    })
 
-  sendUserEmail(email){
+    return () => {
+      this.socket.disconnect();
+    };
+  }
+
+  sendUserEmail(email) {
     console.log('sending email');
     this.socket.emit('userEmail', email);
   }

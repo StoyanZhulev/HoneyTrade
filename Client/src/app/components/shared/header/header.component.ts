@@ -28,11 +28,11 @@ export class HeaderComponent implements OnInit {
     private socketService: SocketService
   ) {
     this.notificationService.notificationsRecieved$.subscribe(data => {
-      this.notifications = data
+      this.notifications = data;
     });
 
-    this.messageService.messageCountRecieved$.subscribe(count => {
-      this.unreadMessageCount = count;
+    this.messageService.messagesRecieved$.subscribe(messages => {
+      this.unreadMessageCount = messages.filter(m => m.isRead === false).length;
     });
 
     this.headerService.loggedIn$.subscribe(data => this.loggedIn = data);
