@@ -12,6 +12,7 @@ export class NotificationService {
     ){};
 
     updateNotifications(data){
+        console.log('notifications in service')
         this.notificationSource.next(data);
     }
 }

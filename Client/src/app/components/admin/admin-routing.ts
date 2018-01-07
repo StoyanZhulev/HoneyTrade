@@ -8,11 +8,9 @@ export const routes: Routes = [
   {
     path: '', component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'users', component:  UsersComponent},
       { path: 'notifications', component: NotificationsComponent },
       { path: 'orders', component: OrdersComponent },
-      
     ]
   },
 ]

@@ -6,6 +6,8 @@ import { AdminOrdersService } from '../../../services/admin/admin-orders/admin-o
 import { Order } from '../../../models/order.model';
 
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../services/notification.service';
+import { Notification } from '../../../models/notification.model';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -13,21 +15,29 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   public orders: Order[];
+  public notifications: Notification[];
   constructor(
     private cookieService: CookieService,
     private headerService: HeaderService,
     private socketService: SocketService,
     private router: Router,
     private adminOrdersService: AdminOrdersService,
+    private notificationService: NotificationService
 
   ) { 
+
+  }
+
+  ngOnInit() {
     this.adminOrdersService.ordersRecieved$.subscribe(data => {
       console.log('recieving orders from admin component')
       this.orders = data;
     })
-  }
 
-  ngOnInit() {
+    this.notificationService.notificationsRecieved$.subscribe(data => {
+      console.log('recieving notifications from admin component')
+      this.notifications = data
+    })
   }
 
   logout() {

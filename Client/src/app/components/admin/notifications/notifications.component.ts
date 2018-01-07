@@ -17,13 +17,14 @@ export class NotificationsComponent implements OnInit {
     private notificationService: NotificationService,
     private router: Router,
   ) { 
-    this.notificationService.notificationsRecieved$.subscribe(nots => {
-      console.log('recieving nots')
-      this.notifications = nots;
-    })
+    
   }
 
   ngOnInit() {
+    this.notificationService.notificationsRecieved$.subscribe(data => {
+      console.log('recieving notifications from notifications component')
+      this.notifications = data
+    })
   }
 
 

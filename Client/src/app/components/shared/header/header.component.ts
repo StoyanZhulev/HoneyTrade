@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
     private socketService: SocketService
   ) {
     this.notificationService.notificationsRecieved$.subscribe(data => {
+      console.log('recieving notifs from header')
       this.notifications = data;
     });
 

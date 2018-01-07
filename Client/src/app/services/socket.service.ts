@@ -49,6 +49,7 @@ export class SocketService {
  
   
     this.socket.on('notifications', nots => {
+      console.log('incoming notificationssssss')
       this.notificationService.updateNotifications(nots);
     })
 

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class OrdersComponent implements OnInit {
   public orders: Order[];
-public str: string = 'hahahahah';
+  public str: string = 'hahahahah';
 
   constructor(
     private adminOrdersService: AdminOrdersService,
@@ -23,6 +23,7 @@ public str: string = 'hahahahah';
   }
 
   ngOnInit() {
+    console.log('ASDKJASLDASDL:ADASDSAASDAS')
   }
 
 }

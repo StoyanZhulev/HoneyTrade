@@ -12,7 +12,6 @@ export class AdminOrdersService {
     ){};
 
     updateOrders(data){
-        console.log(data)
         this.ordersSource.next(data);
     }
 }
