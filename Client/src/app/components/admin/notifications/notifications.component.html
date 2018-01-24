@@ -1,3 +1,9 @@
 <p>
-  {{notifications}}
+  Notifications: {{notifications?.length}}
 </p>
+<ul>
+  <li *ngFor="let not of notifications">
+    Title: {{not?.title}},
+    <br> Text: {{not?.text}}
+  </li>
+</ul>

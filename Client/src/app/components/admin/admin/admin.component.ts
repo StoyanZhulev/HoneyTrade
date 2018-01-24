@@ -3,40 +3,86 @@ import { CookieService } from 'ngx-cookie';
 import { HeaderService } from '../../../services/heeader.service';
 import { SocketService } from '../../../services/socket.service';
 import { AdminOrdersService } from '../../../services/admin/admin-orders/admin-orders.service';
-import { Order } from '../../../models/order.model';
 
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification.service';
-import { Notification } from '../../../models/notification.model';
+import { Notification } from '../../../models/view-models/notification.model';
+import { AdminUserService } from '../../../services/admin/admin-users/admin-users.service';
+import { MessageService } from '../../../services/message.service';
+import { ReviewsService } from '../../../services/reviews.service';
+import { AdminSubscriptionService } from '../../../services/admin/admin-subsciptions/admin-subscriptions.service';
+import { ProductsService } from '../../../services/products.service';
+import { AdminPartneshipRequestsService } from '../../../services/admin/admin-partnership-requests/admin-partnership-requests.service';
+import { HoneyService } from '../../../services/honey.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  public orders: Order[];
-  public notifications: Notification[];
+  public ordersCount: number;
+  public notificationsCount: number;
+  public messagesCount: number;
+  public usersCount: number;
+  public reviewsCount: number;
+  public subscriptionsCount: number;
+  public productsCount: number;
+  public requestsCount: number;
+  public honeysCount: number;
+
   constructor(
     private cookieService: CookieService,
     private headerService: HeaderService,
     private socketService: SocketService,
     private router: Router,
     private adminOrdersService: AdminOrdersService,
-    private notificationService: NotificationService
-
-  ) { 
+    private notificationService: NotificationService,
+    private adminUsersService: AdminUserService,
+    private messageService: MessageService,
+    private reviewsService: ReviewsService,
+    private adminSubscriptionsService: AdminSubscriptionService,
+    private productsService: ProductsService,
+    private adminPartnershipRequestsservice: AdminPartneshipRequestsService,
+    private honeyService: HoneyService
+  ) {
 
   }
 
   ngOnInit() {
-    this.adminOrdersService.ordersRecieved$.subscribe(data => {
-      console.log('recieving orders from admin component')
-      this.orders = data;
+    this.adminOrdersService.ordersRecieved$.subscribe(orders => {
+      this.ordersCount = orders.length;
     })
 
-    this.notificationService.notificationsRecieved$.subscribe(data => {
-      console.log('recieving notifications from admin component')
-      this.notifications = data
+    this.notificationService.notificationsRecieved$.subscribe(nots => {
+      this.notificationsCount = nots.filter(n => n.isRead === false).length;
+    })
+
+    this.messageService.messagesRecieved$.subscribe(messages => {
+      this.messagesCount = messages.length;
+    })
+
+    this.adminUsersService.usersCountRecieved$.subscribe(usersCount => {
+      this.usersCount = usersCount;
+    })
+
+    this.reviewsService.reviewsRecieved$.subscribe(reviews => {
+      this.reviewsCount = reviews.length;
+    })
+
+    this.adminSubscriptionsService.subscriptionsRecieved$.subscribe(subs => {
+      this.subscriptionsCount = subs.length;
+    })
+
+    this.productsService.productsRecieved$.subscribe(prods => {
+      this.productsCount = prods.length;
+    })
+
+    this.adminPartnershipRequestsservice.requestsRecieved$.subscribe(requests => {
+      this.requestsCount = requests.length;
+    })
+
+    this.honeyService.honeysRecieved$.subscribe(honeys => {
+      this.honeysCount = honeys.length;
     })
   }
 

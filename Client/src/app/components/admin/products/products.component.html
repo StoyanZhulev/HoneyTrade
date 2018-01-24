@@ -1,0 +1,13 @@
+<p>
+  Products: {{products?.length}}
+</p>
+<ul>
+  <li *ngFor="let product of products">
+    Product: {{product?.name}},
+    <br> Honey type: {{product?.honeyType}},
+    <br> Price: {{product?.price}},
+    <br> Weight: {{product?.weight.value}}{{product?.weight.unit}}
+    <br>
+    <img src="{{product?.imageUrl}}"  />
+  </li>
+</ul>

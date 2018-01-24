@@ -10,7 +10,7 @@ body {
   	-moz-osx-font-smoothing: grayscale;
 }
 .header {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	z-index: 3;
 	height: 44px;
@@ -75,7 +75,7 @@ body {
 }
 /* side navigation styles */
 .side-nav {
-	position: absolute;
+	position:  fixed !important;
 	width: 100%;
 	height: 100vh;
 	background-color: #35475e;
@@ -125,7 +125,7 @@ body {
 	padding: 0;
 	padding-top: 44px;
 	height: 100%;
-	overflow: scroll;
+	
 }
 .main-content .title {
 	background-color: #eef1f7;

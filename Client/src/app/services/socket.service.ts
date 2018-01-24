@@ -10,6 +10,12 @@ import { MessageService } from './message.service';
 import { CompilerConfig } from '@angular/compiler/src/config';
 import { AdminSubscriptionService } from './admin/admin-subsciptions/admin-subscriptions.service';
 import { AdminOrdersService } from './admin/admin-orders/admin-orders.service';
+import { AdminUserService } from './admin/admin-users/admin-users.service';
+import { ReviewsService } from './reviews.service';
+import { ProductsService } from './products.service';
+import { AdminPartneshipRequestsService } from './admin/admin-partnership-requests/admin-partnership-requests.service';
+import { HoneyService } from './honey.service';
+import { CompanyInfoService } from './company-info.service';
 
 @Injectable()
 export class SocketService {
@@ -22,7 +28,13 @@ export class SocketService {
     private notificationService: NotificationService,
     private messageService: MessageService,
     private adminSubscriptionService: AdminSubscriptionService,
-    private adminOrdersService: AdminOrdersService
+    private adminOrdersService: AdminOrdersService,
+    private adminUsersService: AdminUserService,
+    private reviewsService: ReviewsService,
+    private productsService: ProductsService,
+    private adminPartnershipRequestsService: AdminPartneshipRequestsService,
+    private honeyService: HoneyService,
+    private companyInfoService: CompanyInfoService
   ) { }
 
   disconnect() {
@@ -36,26 +48,64 @@ export class SocketService {
       this.socket.emit('userEmail', email);
 
       if (email === 'admin@honeymarket.com') {
-        this.socket.on('admin-subscribtions', subs => {
+        this.socket.on('admin-subscriptions', subs => {
           this.adminSubscriptionService.updateSubscriptions(subs);
         })
 
-        this.socket.on('orders', orders => {
-          console.log('incomin ordereeeeers')
+        this.socket.on('admin-orders', orders => {
           this.adminOrdersService.updateOrders(orders);
         })
+
+        this.socket.on('admin-partnership-requests', requests => {
+          this.adminPartnershipRequestsService.updateRequests(requests)
+        })
+
+        this.socket.on('admin-users-count', count => {
+          this.adminUsersService.updateUsersCount(count);
+        })
+
+        this.socket.on('admin-users', users => {
+          this.adminUsersService.updateUsers(users);
+        })
+
+        this.socket.on('admin-beekeepers', users => {
+          this.adminUsersService.updateBeekeepers(users);
+        })
+
+        this.socket.on('admin-buyers', users => {
+          this.adminUsersService.updateBuyers(users);
+        })
+
+        this.socket.on('admin-partners', users => {
+          this.adminUsersService.updatePartners(users);
+        })
       }
+
+      this.socket.on('notifications', nots => {
+        this.notificationService.updateNotifications(nots);
+      })
+  
+      this.socket.on('messages', count => {
+        this.messageService.updateMessages(count);
+      })
     }
  
+    this.socket.on('reviews', reviews => {
+      this.reviewsService.updateReviews(reviews);
+    })
   
-    this.socket.on('notifications', nots => {
-      console.log('incoming notificationssssss')
-      this.notificationService.updateNotifications(nots);
+    this.socket.on('products', products => {
+      this.productsService.updateProducts(products);
     })
 
-    this.socket.on('messages', count => {
-      this.messageService.updateMessages(count);
+    this.socket.on('honeys', honeys => {
+      this.honeyService.updateHoneys(honeys);
     })
+
+    this.socket.on('companyInfo', info => {
+      this.companyInfoService.updateCompanyInfo(info);
+    })
+    
 
     return () => {
       this.socket.disconnect();

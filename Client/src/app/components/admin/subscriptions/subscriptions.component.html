@@ -1,0 +1,9 @@
+<p>
+  subscriptions: {{subscriptions?.length}}
+</p>
+<ul>
+  <li *ngFor="let sub of subscriptions">
+    Subscriber email: {{sub?.subscriberEmail}},
+    <br> Subscribed to: {{sub?.subscribedTo}}
+  </li>
+</ul>

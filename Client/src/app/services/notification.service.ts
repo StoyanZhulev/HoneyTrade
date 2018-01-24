@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs/Subject";
-import { Notification } from "../models/notification.model";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Notification } from "../models/view-models/notification.model";
 
 
 @Injectable()
 export class NotificationService {
-    private notificationSource = new Subject<Notification[]>();
+    private notificationSource = new BehaviorSubject<Notification[]>([]);
     public notificationsRecieved$ = this.notificationSource.asObservable();
 
     constructor(

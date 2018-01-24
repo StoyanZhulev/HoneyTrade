@@ -1,0 +1,12 @@
+<h4>This is the information we have for {{ user?.firstName }} {{user?.lastName}}.</h4>
+
+<p>First name: {{user?.firstName}}</p>
+<p>Last name: {{user?.lastName}}</p>
+<p>Email: {{user?.email}}</p>
+<p>Registered on: {{user?.dateRegistered}}</p>
+<p>Subscriptions: </p>
+<ul>
+    <li *ngFor="let sub of subs">
+        {{sub.subscribedTo}}
+      </li>
+</ul>

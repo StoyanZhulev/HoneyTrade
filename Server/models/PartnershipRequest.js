@@ -3,6 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 let partnershipRequestSchema = new mongoose.Schema({
     company: { type: ObjectId, ref: 'Buyer', required: true },
+    date: {type: Object, required: true}
 })
 
 const PartnershipRequest = mongoose.model('PartnershipRequest', partnershipRequestSchema);

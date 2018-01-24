@@ -13,6 +13,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component'
 import { HomeComponent } from './components/home/home.component';
 
+import { UsersComponent } from './components/admin/users/users.component';
+import { NotificationsComponent } from './components/admin/notifications/notifications.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
+
+
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 //import { ErrorInterceptor } from './interceptors/res-err.interceptor';
 //import { NotificationInterceptor } from './interceptors/res-notification.interceptor';
@@ -24,23 +30,31 @@ import { AutorizationService } from './services/auth.service';
 import { HeaderService } from './services/heeader.service';
 import { SocketService } from './services/socket.service';
 import { MessageService } from './services/message.service';
+import { ReviewsService } from './services/reviews.service';
+import { ProductsService } from './services/products.service';
+import { HoneyService } from './services/honey.service';
+import { CompanyInfoService } from './services/company-info.service';
 
 import { AdminSubscriptionService } from './services/admin/admin-subsciptions/admin-subscriptions.service';
 import { AdminUserService } from './services/admin/admin-users/admin-users.service';
 import { AdminOrdersService } from './services/admin/admin-orders/admin-orders.service';
+import { AdminPartneshipRequestsService } from './services/admin/admin-partnership-requests/admin-partnership-requests.service'
 
 
+import { AdminGuard } from "./guards/admin.guard";
 
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { AuthenticationModule } from './components/auth/auth.module';
-import { AdminModule } from './components/admin/admin.module';
+ import { AdminModule } from './components/admin/admin.module';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
-
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap'
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
     HomeComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +62,9 @@ import { AdminModule } from './components/admin/admin.module';
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
+    AdminModule,
     CookieModule.forRoot(),
+    BootstrapModalModule,
   ],
   providers: [
     NotificationService,
@@ -60,6 +76,12 @@ import { AdminModule } from './components/admin/admin.module';
     AdminSubscriptionService,
     AdminUserService,
     AdminOrdersService,
+    ReviewsService,
+    AdminPartneshipRequestsService,
+    ProductsService,
+    HoneyService,
+    CompanyInfoService,
+    AdminGuard
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: ErrorInterceptor,

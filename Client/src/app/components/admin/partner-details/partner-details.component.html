@@ -1,0 +1,20 @@
+<h4 >This is the information we have for {{ user?.company.companyName }}.</h4>
+
+
+<img src="{{user?.company.logoImageUrl}}"/>
+<p>Location: {{user?.company.companyLocation.city}}, {{user?.company.companyLocation.country}}</p>
+<p>Email: {{user?.companyEmail}}</p>
+<p>Information: {{user?.company.companyInformation}}</p>
+<p>Registered on: {{user?.company.dateRegistered}}</p>
+<p>Orders:</p>
+<ul>
+    <li *ngFor="let order of user?.orders">
+      Date:{{order?.date}}, <br>Product:{{order?.product.name}},<br> Quantity:{{order.quantity}},<br> Price: {{order?.price}}
+    </li>
+  </ul>
+<p>Subscriptions: </p>
+<ul>
+  <li *ngFor="let sub of subs">
+    {{sub.subscribedTo}}
+  </li>
+</ul>

@@ -1,5 +1,12 @@
 <p>
-  {{orders?.length}}
-  
+  Orders: {{orders?.length}}
 </p>
-<p>{{str}}</p>
+<ul>
+    <li *ngFor="let order of orders">
+     Customer: {{order?.customer}},<br> 
+     Date: {{order?.date}},<br> Product: {{order?.product.name}},<br>
+     <img src="{{order?.product.imageUrl}}" width="150" height="100" /><br>
+      Quantity: {{order.quantity}}, <br>
+      Price: {{order?.price}}
+    </li>
+  </ul>

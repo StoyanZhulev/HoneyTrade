@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs/Subject";
-import { Subscription } from "../../../models/subscription.model";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subscription } from "../../../models/view-models/subscription.model";
 
 
 @Injectable()
 export class AdminSubscriptionService {
-    private subscriptionsSource = new Subject<Subscription[]>();
+    private subscriptionsSource = new BehaviorSubject<Subscription[]>([]);
     public subscriptionsRecieved$ = this.subscriptionsSource.asObservable();
 
     constructor(

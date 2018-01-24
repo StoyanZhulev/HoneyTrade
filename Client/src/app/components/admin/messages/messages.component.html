@@ -1,0 +1,10 @@
+<p>
+  Messages: {{messages?.length}}
+</p>
+<ul>
+    <li *ngFor="let message of messages">
+        Sender email: {{message?.senderEmail}},
+        <br> Text: {{message?.text}},<br>
+        Date: {{message?.date}}
+    </li>
+</ul>

@@ -1,102 +1,114 @@
-<div class="header">
-	<div class="logo">
-		<i class="fa fa-tachometer"></i>
-		<span>Brand</span>
+<div>
+	<div  class="header">
+		<div class="logo">
+			<i class="fa fa-tachometer"></i>
+			<span>Brand</span>
+		</div>
+		<a href="#" class="nav-trigger">
+			<span>HoneyTrade</span>
+		</a>
 	</div>
-	<a href="#" class="nav-trigger">
-		<span>HoneyTrade</span>
-	</a>
-</div>
-<div class="side-nav">
-	<div class="logo">
-		<img src="../../../bee.png" width="20px" height="20px" />
-		<span>HoneyTrade</span>
+	<div class="side-nav">
+		<div class="logo">
+			<img src="../../../bee.png" width="20px" height="20px" />
+			<span>HoneyTrade</span>
+		</div>
+		<nav>
+			<ul>
+				<li>
+					<a routerLink="/admin/users">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Users {{usersCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/orders">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Orders {{ordersCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/reviews">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Reviews {{reviewsCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/products">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Products {{productsCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/honeys">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Honeys {{honeysCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/subscriptions">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Subscriptions {{subscriptionsCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/notifications">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Notifications {{notificationsCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/messages">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Messages {{messagesCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/partnership-requests">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Partnership requests {{requestsCount}}</span>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/admin/company-info">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Company Info</span>
+					</a>
+				</li>
+				<li>
+					<a (click)="logout()"  routerLink="/home">
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span >Logout</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
-	<nav>
-		<ul>
-			<li>
-				<a routerLink="/admin/users">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Users</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/orders">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Orders</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/reviews">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Reviews</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/products">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Products</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/honeys">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Honeys</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/subscriptions">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Subscriptions</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/notifications">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Notifications {{notifications?.length}}</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/messages">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Messages</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/admin/messages">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span>Orders {{orders?.length}}</span>
-				</a>
-			</li>
-			<li>
-				<a routerLink="/home">
-					<span>
-						<i class="fa fa-user"></i>
-					</span>
-					<span (click)="logout()">Logout</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-</div>
-<div class="main-content">
-	<router-outlet></router-outlet>
-</div>
+	</div>
+	<div class="main-content">
+		<router-outlet></router-outlet>
+	</div>
+	
+	

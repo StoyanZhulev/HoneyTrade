@@ -69,7 +69,7 @@ router.post('/message/send', async (req, res) => {
             for (let socketId in io.sockets.sockets) {
                
                 if (io.sockets.sockets[socketId].userEmail === 'admin@honeymarket.com') {                    
-                    io.sockets.sockets[socketId].emit('unreadMessageCount', messages.length); 
+                    io.sockets.sockets[socketId].emit('messages', messages); 
                     break;
                 }
             }

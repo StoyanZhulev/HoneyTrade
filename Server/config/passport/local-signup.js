@@ -52,7 +52,8 @@ module.exports = new PassportLocalStrategy({
             lastName: reqUser.lastName,
             email: reqUser.email,
             hashedPass: hashedPass,
-            salt: salt
+            salt: salt,
+            dateRegistered: new Date()
           });
           break;
         case 'beekeeper':
@@ -63,7 +64,8 @@ module.exports = new PassportLocalStrategy({
             location: reqUser.location,
             email: reqUser.email,
             hashedPass: hashedPass,
-            salt: salt
+            salt: salt,
+            dateRegistered: new Date()
           });
           break;
         case 'buyer':
@@ -74,7 +76,7 @@ module.exports = new PassportLocalStrategy({
             email: reqUser.email,
             hashedPass: hashedPass,
             salt: salt,
-            role: []
+            dateRegistered: new Date(),
           })
         default:
           break;

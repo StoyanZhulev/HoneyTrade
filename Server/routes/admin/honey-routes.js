@@ -37,7 +37,7 @@ router.post('/honey/create', async (req, res) => {
         price: reqHoney.price
     });
 
-    Subscription.find({ subscribedTo: 'honey new' }).then(async function (subs) {n
+    Subscription.find({ subscribedTo: 'honey new' }).then(async function (subs) {
         for (let sub of subs) {
             let not =  await Notification.create({
                 recieverEmail: sub.subscriberEmail,
@@ -47,11 +47,14 @@ router.post('/honey/create', async (req, res) => {
                 isRead: false
             })
 
-            await Notification.find({ recieverEmail: sub.subscriberEmail }).then(nots => {
+            await Notification.find({ recieverEmail: sub.subscriberEmail }).then(async nots => {
                 const io = require('../../index');
+                
+                let honeys = await Honey.find();
 
                 for (let socketId in io.sockets.sockets) {
-                    if (io.sockets.sockets[socketId].userEmail === sub.subscriberEmai) {
+                    io.sockets.sockets[socketId].emit('honeys', honeys)
+                    if (io.sockets.sockets[socketId].userEmail === sub.subscriberEmail) {                        
                         io.sockets.sockets[socketId].emit('notifications', nots);
                         break;
                     }
@@ -124,11 +127,14 @@ router.put('/honey/:id/update', async (req, res) => {
                         isRead: false
                     })
         
-                    await Notification.find({ recieverEmail: sub.subscriberEmail }).then(nots => {
+                    await Notification.find({ recieverEmail: sub.subscriberEmail }).then(async nots => {
                        
+                        let honeys = await Honey.find();
+
                         const io = require('../../index');
         
                         for (let socketId in io.sockets.sockets) {
+                            io.sockets.sockets[socketId].emit('honeys', honeys)
                             if (io.sockets.sockets[socketId].userEmail === sub.subscriberEmai) {
                                 io.sockets.sockets[socketId].emit('notifications', nots);
                                 break;

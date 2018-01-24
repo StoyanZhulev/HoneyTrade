@@ -1,0 +1,13 @@
+<h4 >This is the information we have for {{ user?.companyName }} {{user?.lastName}}.</h4>
+
+<img src="{{user?.logoImageUrl}}"/>
+<p>Location: {{user?.companyLocation.city}}, {{user?.companyLocation.country}}</p>
+<p>Email: {{user?.email}}</p>
+<p>Information: {{user?.companyInformation}}</p>
+<p>Registered on: {{user?.dateRegistered}}</p>
+<p>Subscriptions: </p>
+<ul>
+  <li *ngFor="let sub of subs">
+    {{sub.subscribedTo}}
+  </li>
+</ul>

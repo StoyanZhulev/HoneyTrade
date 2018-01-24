@@ -1,0 +1,15 @@
+<h4 *ngIf="user?.firstName">This is the information we have for {{ user?.firstName }} {{user?.lastName}}.</h4>
+<h4 *ngIf="user?.companyName">This is the information we have for {{ user?.companyName }}.</h4>
+
+<p *ngIf="user?.firstName">First name: {{user?.firstName}}</p>
+<p *ngIf="user?.lastName">Last name: {{user?.lastName}}</p>
+<p *ngIf="user?.companyName">Company name: {{user?.companyName}}</p>
+<p>Location: {{user?.location}}</p>
+<p>Email: {{user?.email}}</p>
+<p>Registered on: {{user?.dateRegistered}}</p>
+<p>Subscriptions: </p>
+<ul>
+  <li *ngFor="let sub of subs">
+    {{sub.subscribedTo}}
+  </li>
+</ul>

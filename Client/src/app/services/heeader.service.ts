@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs/Subject";
-import { Notification } from "../models/notification.model";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Notification } from "../models/view-models/notification.model";
 
 
 @Injectable()
 export class HeaderService {
-    private loggedInSource = new Subject<boolean>();
+    private loggedInSource = new BehaviorSubject<boolean>(false);
     public loggedIn$ = this.loggedInSource.asObservable();
 
     
-    private isAdminSource = new Subject<boolean>();
+    private isAdminSource = new BehaviorSubject<boolean>(false);
     public isAdmin$ = this.isAdminSource.asObservable();
 
     constructor(){};

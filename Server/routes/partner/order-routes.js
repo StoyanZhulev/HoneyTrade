@@ -4,6 +4,8 @@ const router = new express.Router()
 
 const Subscription = require('mongoose').model('Subscription');
 const Notification = require('mongoose').model('Notification');
+const Partner = require('mongoose').model('Partner');
+
 const Product = require('mongoose').model('Product');
 const Order = require('mongoose').model('Order');
 
@@ -71,6 +73,11 @@ router.post('/order/create', async (req, res) => {
             }).then(async function(order){
                 let orders = await Order.find({customer: req.user.companyEmail});
                                 
+                let partner = await Partner.find({companyEmail: req.user.companyEmail});
+                partner.orders.push(order._id);
+
+                await partner.save();
+
                 let n = orders.filter(o => o.product+ '' === order.product + '').length;
                 
                 if(n < 2){
@@ -86,7 +93,7 @@ router.post('/order/create', async (req, res) => {
                                 isRead: false
                             })
     
-                            await Notification.find({ recieverEmail: sub.subscriberEmail }).then(nots => {
+                            await Notification.find({ recieverEmail: sub.subscriberEmail }).then(async nots => {
                                 const io = require('../../index');
         
                                 for (let socketId in io.sockets.sockets) {
@@ -95,6 +102,7 @@ router.post('/order/create', async (req, res) => {
                                         break;
                                     }
                                 }
+
                                 return res.status(200).json({
                                     success: true,
                                     message: 'Order created'

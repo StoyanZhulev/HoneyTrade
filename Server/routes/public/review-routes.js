@@ -45,12 +45,18 @@ router.post('/review/create', async (req, res) => {
     }
 
     let date = new Date();
-    let prod = await Review.create({
-        name: reqReview.name,
-        honeyType: reqReview.honeyType,
+    let review = await Review.create({
+        author: reqReview.author,
+        text: reqReview.text,
         date: date
     });
 
+    let reviews = await Review.find();
+    const io = require('../../index');
+
+    for (let socketId in io.sockets.sockets) {
+        io.sockets.sockets[socketId].emit('reviews', reviews);
+    }
 
     return res.status(200).json({
         success: true,

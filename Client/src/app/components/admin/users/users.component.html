@@ -1,3 +1,106 @@
-<p>
-  users works!
-</p>
+<p>Users: {{users?.length}}</p>
+<div class="table-responsive table-hover table-bordered">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let user of users; let i = index">
+        <th>{{i + 1}}</th>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td><a [routerLink]="['../../user', user.email, 'details']">Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Beekeepers: {{beekeepers?.length}}</p>
+  <div class="table-responsive table-hover table-bordered">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Beekeeper</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Company name</th>
+          <th>Location</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let beekeeper of beekeepers; let i = index">
+          <th>{{i + 1}}</th>
+          <td>{{beekeeper.firstName}}</td>
+          <td>{{beekeeper.lastName}}</td>
+          <td>{{beekeeper.companyName}}</td>
+          <td>{{beekeeper.location}}</td>
+          <td>{{beekeeper.email}}</td>
+          <td><a [routerLink]="['../../beekeeper', beekeeper.email, 'details']">Details</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Buyers: {{buyers?.length}}</p>
+    <div class="table-responsive table-hover table-bordered">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Buyer</th>
+            <th>Company name</th>
+            <th>Location</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let buyer of buyers; let i = index">
+            <th>{{i + 1}}</th>
+            <td>{{buyer.companyName}}</td>
+            <td>{{buyer.companyLocation.country}}</td>
+            <td>{{buyer.email}}</td>
+            <td><a [routerLink]="['../../buyer', buyer.email, 'details']">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Partners: {{partners?.length}}</p>
+      <div class="table-responsive table-hover table-bordered">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Partner</th>
+              <th>Company name</th>
+              <th>Location</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let partner of partners; let i = index">
+              <th>{{i + 1}}</th>
+              <td>{{partner.company.companyName}}</td>
+              <td>{{partner.company.companyLocation.country}}</td>
+              <td>{{partner.companyEmail}}</td>
+              <td><a [routerLink]="['../../partner', partner.companyEmail, 'details']">Details</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template #detailsModal>
+        <div class="modal-header">
+          <h4>TITLE</h4>
+        </div>
+        <div class="modal-body">
+           
+        </div>
+      </ng-template>

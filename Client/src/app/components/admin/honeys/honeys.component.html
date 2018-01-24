@@ -1,0 +1,9 @@
+<p>
+    Honeys: {{honeys?.length}}
+</p>
+<ul>
+    <li *ngFor="let honey of honeys">
+        Type: {{honey?.author}},
+        <br> Price: {{honey?.price}}
+    </li>
+</ul>

@@ -9,6 +9,7 @@ const beekeeperSchema = new mongoose.Schema({
     email: { type: mongoose.Schema.Types.String, required: true, unique: true },
     hashedPass: { type: mongoose.Schema.Types.String, required: true },
     salt: { type: mongoose.Schema.Types.String, required: true },
+    dateRegistered: { type: mongoose.Schema.Types.Date, required: true },
 });
 
 beekeeperSchema.method({

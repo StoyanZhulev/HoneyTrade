@@ -6,22 +6,20 @@ import { RouterModule } from "@angular/router"
 import {routes} from './admin-routing';
 
 import { adminComponents } from "./index";
-import { NotificationsComponent } from './notifications/notifications.component';
-import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
+    
   ],
   declarations: [
     ...adminComponents,
-    NotificationsComponent,
-    OrdersComponent
+    
   ],
   exports: [
-    ...adminComponents
+    ...adminComponents,
   ],
   providers: [],
 })

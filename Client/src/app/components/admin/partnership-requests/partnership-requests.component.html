@@ -1,0 +1,10 @@
+<p>
+  Requests: {{requests?.length}}
+</p>
+<ul>
+    <li *ngFor="let req of requests">
+        Sender email: {{message?.senderEmail}},
+        <br> Text: {{message?.text}},<br>
+        Date: {{message?.date}}
+    </li>
+</ul>

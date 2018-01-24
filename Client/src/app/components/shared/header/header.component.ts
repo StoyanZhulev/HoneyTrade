@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../../services/notification.service';
-import { Notification } from '../../../models/notification.model';
+import { Notification } from '../../../models/view-models/notification.model';
 
 import { CookieService } from 'ngx-cookie';
 import { HeaderService } from '../../../services/heeader.service';
@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
   public notifications: Notification[];
   public loggedIn: boolean;
   public unreadMessageCount: number;
-  private isAdmin: boolean
+  private isAdmin: boolean;
+
   constructor(
     private notificationService: NotificationService,
     private messageService: MessageService,
@@ -28,7 +29,6 @@ export class HeaderComponent implements OnInit {
     private socketService: SocketService
   ) {
     this.notificationService.notificationsRecieved$.subscribe(data => {
-      console.log('recieving notifs from header')
       this.notifications = data;
     });
 
@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('in header')
     if(this.cookieService.get('token')){
       this.socketService.connect(this.cookieService.get('userEmail'));
     }
@@ -76,10 +77,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.cookieService.removeAll();
+    this.headerService.updateLoggedin(false);
+    this.headerService.updateisAdmin(false);
     this.loggedIn = false;
     this.isAdmin = false;
     this.socketService.disconnect();
-    this.router.navigateByUrl('/home');
   }
 
 }

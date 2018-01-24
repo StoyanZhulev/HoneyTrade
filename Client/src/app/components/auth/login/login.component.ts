@@ -35,9 +35,10 @@ export class LoginComponent implements OnInit {
         this.cookieService.put('userEmail', data.user.email);
         this.cookieService.put('userRole', data.user.role);
         this.headerService.updateLoggedin(true);
+        this.socketService.connect(data.user.email);
         if(this.cookieService.get('userRole') === 'admin'){
           this.headerService.updateisAdmin(true);
-          this.router.navigateByUrl('/admin');
+          this.router.navigateByUrl('/admin/notifications');
         }else{
           this.router.navigateByUrl('/home');
         }

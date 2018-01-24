@@ -81,10 +81,14 @@ router.post('/product/create', async (req, res) => {
                 isRead: false
             })
 
+
+
             await Notification.find({ recieverEmail: sub.subscriberEmail }).then(nots => {
+                let products = Product.find();
                 const io = require('../../index');
 
                 for (let socketId in io.sockets.sockets) {
+                    io.sockets.sockets[socketId].emit('products', products);
                     if (io.sockets.sockets[socketId].userEmail === sub.subscriberEmai) {
                         io.sockets.sockets[socketId].emit('notifications', nots);
                         break;

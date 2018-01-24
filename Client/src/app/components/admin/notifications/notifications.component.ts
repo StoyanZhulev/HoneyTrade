@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../../services/notification.service';
 import { Router } from '@angular/router';
+import { MessageService } from '../../../services/message.service';
 
-import { Notification } from '../../../models/notification.model';
+
+import { Notification } from '../../../models/view-models/notification.model';
 
 
 @Component({
@@ -12,19 +14,25 @@ import { Notification } from '../../../models/notification.model';
 })
 export class NotificationsComponent implements OnInit {
   public notifications: Notification[];
+  public unreadMessageCount: number;
 
   constructor(
     private notificationService: NotificationService,
     private router: Router,
+
+    private messageService: MessageService,
   ) { 
     
   }
 
   ngOnInit() {
     this.notificationService.notificationsRecieved$.subscribe(data => {
-      console.log('recieving notifications from notifications component')
       this.notifications = data
     })
+    this.messageService.messagesRecieved$.subscribe(messages => {
+      this.unreadMessageCount = messages.filter(m => m.isRead === false).length;
+    });
+
   }
 
 

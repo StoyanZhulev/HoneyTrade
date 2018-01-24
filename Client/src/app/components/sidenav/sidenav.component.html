@@ -1,0 +1,105 @@
+<div *ngIf="isAdmin">
+<div  class="header">
+	<div class="logo">
+		<i class="fa fa-tachometer"></i>
+		<span>Brand</span>
+	</div>
+	<a href="#" class="nav-trigger">
+		<span>HoneyTrade</span>
+	</a>
+</div>
+<div class="side-nav">
+	<div class="logo">
+		<img src="../../../bee.png" width="20px" height="20px" />
+		<span>HoneyTrade</span>
+	</div>
+	<nav>
+		<ul>
+			<li>
+				<a routerLink="/admin/users">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Users</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/orders">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Orders {{ordersCount}}</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/reviews">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Reviews</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/products">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Products</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/honeys">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Honeys</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/subscriptions">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Subscriptions</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/notifications">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Notifications {{unreadNotificationsCount}}</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/messages">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Messages {{unreadMessageCount}}</span>
+				</a>
+			</li>
+			<li>
+				<a routerLink="/admin/messages">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span>Orders </span>
+				</a>
+			</li>
+			<li>
+				<a (click)="logout()"  routerLink="/home">
+					<span>
+						<i class="fa fa-user"></i>
+					</span>
+					<span >Logout</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+</div>
+<div [ngClass]="isAdmin?'main-content':''">
+	<router-outlet></router-outlet>
+</div>
+

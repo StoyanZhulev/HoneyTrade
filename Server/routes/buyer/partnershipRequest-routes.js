@@ -26,7 +26,8 @@ router.post('/request/create', async (req, res) => {
         })
     }
     PartnershipRrequest.create({
-        company: userId
+        company: userId,
+        date: new Date()
     }).then(data => {
         res.status(200).json({
             success: true,
