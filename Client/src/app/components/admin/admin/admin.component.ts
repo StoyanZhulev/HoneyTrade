@@ -9,7 +9,7 @@ import { NotificationService } from '../../../services/notification.service';
 import { Notification } from '../../../models/view-models/notification.model';
 import { AdminUserService } from '../../../services/admin/admin-users/admin-users.service';
 import { MessageService } from '../../../services/message.service';
-import { ReviewsService } from '../../../services/reviews.service';
+import { TestimonialsService } from '../../../services/testimonials.service';
 import { AdminSubscriptionService } from '../../../services/admin/admin-subsciptions/admin-subscriptions.service';
 import { ProductsService } from '../../../services/products.service';
 import { AdminPartneshipRequestsService } from '../../../services/admin/admin-partnership-requests/admin-partnership-requests.service';
@@ -17,14 +17,14 @@ import { HoneyService } from '../../../services/honey.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
   public ordersCount: number;
   public notificationsCount: number;
   public messagesCount: number;
   public usersCount: number;
-  public reviewsCount: number;
+  public testimonialsCount: number;
   public subscriptionsCount: number;
   public productsCount: number;
   public requestsCount: number;
@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
     private notificationService: NotificationService,
     private adminUsersService: AdminUserService,
     private messageService: MessageService,
-    private reviewsService: ReviewsService,
+    private testimonialsService: TestimonialsService,
     private adminSubscriptionsService: AdminSubscriptionService,
     private productsService: ProductsService,
     private adminPartnershipRequestsservice: AdminPartneshipRequestsService,
@@ -65,8 +65,8 @@ export class AdminComponent implements OnInit {
       this.usersCount = usersCount;
     })
 
-    this.reviewsService.reviewsRecieved$.subscribe(reviews => {
-      this.reviewsCount = reviews.length;
+    this.testimonialsService.testimonialsRecieved$.subscribe(testimonials => {
+      this.testimonialsCount = testimonials.length;
     })
 
     this.adminSubscriptionsService.subscriptionsRecieved$.subscribe(subs => {

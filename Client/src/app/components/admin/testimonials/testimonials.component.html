@@ -1,0 +1,9 @@
+<p>
+    Testimonials: {{testimonials?.length}}
+  </p>
+  <ul>
+      <li *ngFor="let testimonial of testimonials">
+       Author: {{testimonial?.author}},<br> Text: {{testimonial?.text}},<br> Date: {{testimonial?.date}}
+      </li>
+    </ul>
+  

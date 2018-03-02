@@ -5,7 +5,7 @@ import { AdminSubscriptionService } from '../../../services/admin/admin-subscipt
 @Component({
   selector: 'app-subscriptions',
   templateUrl: './subscriptions.component.html',
-  styleUrls: ['./subscriptions.component.css']
+  styleUrls: ['./subscriptions.component.scss']
 })
 export class SubscriptionsComponent implements OnInit {
 

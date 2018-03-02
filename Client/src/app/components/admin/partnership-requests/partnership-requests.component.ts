@@ -5,7 +5,7 @@ import { AdminPartneshipRequestsService } from '../../../services/admin/admin-pa
 @Component({
   selector: 'app-partnership-requests',
   templateUrl: './partnership-requests.component.html',
-  styleUrls: ['./partnership-requests.component.css']
+  styleUrls: ['./partnership-requests.component.scss']
 })
 export class PartnershipRequestsComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { Subscription } from '../../../models/view-models/subscription.model';
 @Component({
   selector: 'app-buyer-details',
   templateUrl: './buyer-details.component.html',
-  styleUrls: ['./buyer-details.component.css']
+  styleUrls: ['./buyer-details.component.scss']
 })
 export class BuyerDetailsComponent implements OnInit {
 

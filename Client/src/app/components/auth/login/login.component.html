@@ -1,12 +1,12 @@
 
-<div class="container-fluid background">
+<!-- <div class="container-fluid background">
     <div class="text-center">
       <label class="text-logo">CONTACTIFY</label>
     </div>
     <div class="wrapper col-md-offset-4 col-lg-offset-4  col-xs-offset-4  col-md-4 col-lg-4 col-xs-4">
-      <form #form="ngForm" (submit)="login()" novalidate>
+      <form #form="ngForm" (submit)="login()" novalidate> -->
         <!--dummy input to disable autofill-->
-        <input type="password" style="width: 0;height: 0; visibility: hidden;position:absolute;left:0;top:0;"/>
+        <!-- <input type="password" style="width: 0;height: 0; visibility: hidden;position:absolute;left:0;top:0;"/>
   
         <div class="form-group">
           <input type="text" class="form-control" name="email"
@@ -33,4 +33,51 @@
       </label>
     </div>
   </div>
-  
+   -->
+
+   
+<!--Modal: Login Form-->
+<div mdbModal #loginForm="mdb-modal" class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-user"></i> Log in</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="loginForm.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form form-sm">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input mdbActive type="text" id="form30" class="form-control">
+                    <label for="form30">Your email</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="form31" class="form-control">
+                    <label for="form31">Your password</label>
+                </div>
+
+                <div class="text-center mt-2">
+                    <button class="btn btn-info waves-light" mdbRippleRadius>Log in <i class="fa fa-sign-in ml-1"></i></button>
+                </div>
+
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <div class="options text-center text-md-right mt-1">
+                    <p>Not a member? <a href="#">Sign Up</a></p>
+                    <p>Forgot <a href="#">Password?</a></p>
+                </div>
+                <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal" (click)="form.hide()" mdbRippleRadius>Close</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Login Form-->

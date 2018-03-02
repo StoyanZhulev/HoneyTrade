@@ -17,7 +17,7 @@
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.email}}</td>
-        <td><a [routerLink]="['../../user', user.email, 'details']">Details</a></td>
+        <td><a [routerLink]="['/admin/user', user.email, 'details']">Details</a></td>
       </tr>
     </tbody>
   </table>
@@ -44,7 +44,7 @@
           <td>{{beekeeper.companyName}}</td>
           <td>{{beekeeper.location}}</td>
           <td>{{beekeeper.email}}</td>
-          <td><a [routerLink]="['../../beekeeper', beekeeper.email, 'details']">Details</a></td>
+          <td><a [routerLink]="['/admin/beekeeper', beekeeper.email, 'details']">Details</a></td>
         </tr>
       </tbody>
     </table>
@@ -67,7 +67,7 @@
             <td>{{buyer.companyName}}</td>
             <td>{{buyer.companyLocation.country}}</td>
             <td>{{buyer.email}}</td>
-            <td><a [routerLink]="['../../buyer', buyer.email, 'details']">Details</a></td>
+            <td><a [routerLink]="['/admin/buyer', buyer.email, 'details']">Details</a></td>
           </tr>
         </tbody>
       </table>
@@ -90,7 +90,7 @@
               <td>{{partner.company.companyName}}</td>
               <td>{{partner.company.companyLocation.country}}</td>
               <td>{{partner.companyEmail}}</td>
-              <td><a [routerLink]="['../../partner', partner.companyEmail, 'details']">Details</a></td>
+              <td><a [routerLink]="['/admin/partner', partner.companyEmail, 'details']">Details</a></td>
             </tr>
           </tbody>
         </table>

@@ -11,7 +11,7 @@ import { CompilerConfig } from '@angular/compiler/src/config';
 import { AdminSubscriptionService } from './admin/admin-subsciptions/admin-subscriptions.service';
 import { AdminOrdersService } from './admin/admin-orders/admin-orders.service';
 import { AdminUserService } from './admin/admin-users/admin-users.service';
-import { ReviewsService } from './reviews.service';
+import { TestimonialsService } from './testimonials.service';
 import { ProductsService } from './products.service';
 import { AdminPartneshipRequestsService } from './admin/admin-partnership-requests/admin-partnership-requests.service';
 import { HoneyService } from './honey.service';
@@ -30,7 +30,7 @@ export class SocketService {
     private adminSubscriptionService: AdminSubscriptionService,
     private adminOrdersService: AdminOrdersService,
     private adminUsersService: AdminUserService,
-    private reviewsService: ReviewsService,
+    private TestimonialsService: TestimonialsService,
     private productsService: ProductsService,
     private adminPartnershipRequestsService: AdminPartneshipRequestsService,
     private honeyService: HoneyService,
@@ -90,8 +90,8 @@ export class SocketService {
       })
     }
  
-    this.socket.on('reviews', reviews => {
-      this.reviewsService.updateReviews(reviews);
+    this.socket.on('testimonials', testimonials => {
+      this.TestimonialsService.updateTestimonials(testimonials);
     })
   
     this.socket.on('products', products => {

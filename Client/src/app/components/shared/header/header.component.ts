@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationService } from '../../../services/notification.service';
 import { Notification } from '../../../models/view-models/notification.model';
 
@@ -7,13 +7,17 @@ import { HeaderService } from '../../../services/heeader.service';
 import { Router } from '@angular/router';
 import { SocketService } from '../../../services/socket.service';
 import { MessageService } from '../../../services/message.service';
+import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @ViewChild(LoginComponent) loginForm: LoginComponent;
+
 
   public notifications: Notification[];
   public loggedIn: boolean;

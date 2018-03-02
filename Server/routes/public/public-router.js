@@ -2,7 +2,7 @@ const authRoutes = require('./auth-routes');
 const compInfoRoutes = require('./companyInformation-routes');
 const productRoutes = require('./product-routes');
 const partnersRoutes = require('./partners-routes');
-const reviewRoutes = require('./review-routes');
+const testimonialRoutes = require('./testimonial-routes');
 
 
 
@@ -11,7 +11,7 @@ const publicRoutes = [
     compInfoRoutes,
     productRoutes,
     partnersRoutes,
-    reviewRoutes
+    testimonialRoutes
 ];
 
 module.exports = publicRoutes;

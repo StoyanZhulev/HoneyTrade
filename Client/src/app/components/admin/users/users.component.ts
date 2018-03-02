@@ -11,7 +11,7 @@ import { Partner } from '../../../models/view-models/users/partner.model';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
   public users: User[];

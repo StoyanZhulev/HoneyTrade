@@ -13,7 +13,7 @@ import { AdminGuard } from './guards/admin.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, pathMatch: 'full'},
 
   { path: 'auth', loadChildren: './components/auth/auth.module#AuthenticationModule' },
 

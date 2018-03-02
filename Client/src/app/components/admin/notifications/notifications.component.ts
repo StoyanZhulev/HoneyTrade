@@ -10,7 +10,7 @@ import { Notification } from '../../../models/view-models/notification.model';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
   public notifications: Notification[];

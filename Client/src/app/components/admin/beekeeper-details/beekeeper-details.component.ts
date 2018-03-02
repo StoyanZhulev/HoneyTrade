@@ -7,7 +7,7 @@ import { Subscription } from '../../../models/view-models/subscription.model';
 @Component({
   selector: 'app-beekeeper-details',
   templateUrl: './beekeeper-details.component.html',
-  styleUrls: ['./beekeeper-details.component.css']
+  styleUrls: ['./beekeeper-details.component.scss']
 })
 export class BeekeeperDetailsComponent implements OnInit {
 

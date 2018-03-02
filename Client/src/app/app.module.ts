@@ -30,7 +30,7 @@ import { AutorizationService } from './services/auth.service';
 import { HeaderService } from './services/heeader.service';
 import { SocketService } from './services/socket.service';
 import { MessageService } from './services/message.service';
-import { ReviewsService } from './services/reviews.service';
+import { TestimonialsService } from './services/testimonials.service';
 import { ProductsService } from './services/products.service';
 import { HoneyService } from './services/honey.service';
 import { CompanyInfoService } from './services/company-info.service';
@@ -48,7 +48,9 @@ import { AuthenticationModule } from './components/auth/auth.module';
  import { AdminModule } from './components/admin/admin.module';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
-import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap'
+
+import { MDBBootstrapModules } from 'ng-mdb-pro';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +66,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap'
     ReactiveFormsModule,
     AdminModule,
     CookieModule.forRoot(),
-    BootstrapModalModule,
+    MDBBootstrapModules.forRoot()
   ],
   providers: [
     NotificationService,
@@ -76,12 +78,12 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap'
     AdminSubscriptionService,
     AdminUserService,
     AdminOrdersService,
-    ReviewsService,
+    TestimonialsService,
     AdminPartneshipRequestsService,
     ProductsService,
     HoneyService,
     CompanyInfoService,
-    AdminGuard
+    AdminGuard,
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: ErrorInterceptor,

@@ -17,7 +17,7 @@ const Message = require('../models/Message');
 const Order = require('../models/Order');
 const Product = require('../models/Product');
 const Subscription = require('../models/Subscription');
-const Review = require('../models/Review');
+const Testimonial = require('../models/Testimonial');
 const Notification = require('../models/Notification');
 const PartnershipRequest = require('../models/PartnershipRequest');
 

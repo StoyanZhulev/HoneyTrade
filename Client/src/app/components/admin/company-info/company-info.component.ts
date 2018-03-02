@@ -5,7 +5,7 @@ import { CompanyInfoService } from '../../../services/company-info.service';
 @Component({
   selector: 'app-company-info',
   templateUrl: './company-info.component.html',
-  styleUrls: ['./company-info.component.css']
+  styleUrls: ['./company-info.component.scss']
 })
 export class CompanyInfoComponent implements OnInit {
 

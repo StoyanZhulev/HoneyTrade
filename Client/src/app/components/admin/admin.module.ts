@@ -7,12 +7,14 @@ import {routes} from './admin-routing';
 
 import { adminComponents } from "./index";
 
+import { MDBBootstrapModules } from 'ng-mdb-pro';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    
+    MDBBootstrapModules
   ],
   declarations: [
     ...adminComponents,

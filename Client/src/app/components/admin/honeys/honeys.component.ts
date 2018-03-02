@@ -5,7 +5,7 @@ import { HoneyService } from '../../../services/honey.service';
 @Component({
   selector: 'app-honeys',
   templateUrl: './honeys.component.html',
-  styleUrls: ['./honeys.component.css']
+  styleUrls: ['./honeys.component.scss']
 })
 export class HoneysComponent implements OnInit {
 

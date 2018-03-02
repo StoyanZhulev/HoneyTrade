@@ -3,50 +3,50 @@ const express = require('express');
 const router = new express.Router();
 
 
-const Review = require('mongoose').model('Review');
+const Testimonial = require('mongoose').model('Testimonial');
 
 
-router.get('/reviews/all', async (req, res) => {
+router.get('/testimonials/all', async (req, res) => {
 
-    let reviews = await Review.find();
+    let testimonials = await Testimonial.find();
 
     return res.status(200).json({
         success: true,
         message: 'Recieved products.',
-        reviews: reviews,
+        testimonials: testimonials,
     })
 })
 
 
-router.delete('/review/:id', async (req, res) => {
+router.delete('/testimonial/:id', async (req, res) => {
     let id = req.params.id;
 
-    Review.findByIdAndRemove(id).then(e => {
+    Testimonial.findByIdAndRemove(id).then(e => {
         
         return res.status(200).json({
             success: true,
-            message: 'Review product'
+            message: 'Testimonial deleted'
         })
     }).catch(e => {
         return res.status(404).json({
             success: false,
-            message: 'Honey does not exist'
+            message: 'Testimonial does not exist'
         })
     })
 })
 
-router.get('/review/:id', async (req, res) => {
+router.get('/testimonial/:id', async (req, res) => {
     let id = req.params.id;
 
-    Review.findById(id).then(rev => {
+    Testimonial.findById(id).then(tes => {
         return res.status(200).json({
             success: true,
-            review: rev
+            testimonial: tes
         })
     }).catch(e => {
         return res.status(404).json({
             success: false,
-            message: 'Honey not found'
+            message: 'Testimonial not found'
         })
     })
 })

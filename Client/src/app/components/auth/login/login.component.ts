@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AutorizationService } from '../../../services/auth.service';
 import { CompilerConfig } from '@angular/compiler/src/config';
 import { HeaderService } from '../../../services/heeader.service';
@@ -9,9 +9,12 @@ import { SocketService } from '../../../services/socket.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+
+  @ViewChild('loginForm') public loginFormModal;
 
   private model: {
     email: string,
@@ -44,7 +47,11 @@ export class LoginComponent implements OnInit {
         }
     }
     );
-
   }
+
+
+  show(){
+    this.loginFormModal.show();
+}
 
 }

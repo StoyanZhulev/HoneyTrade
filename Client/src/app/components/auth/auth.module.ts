@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
 import { RouterModule } from "@angular/router"
 
+import { MDBBootstrapModules } from 'ng-mdb-pro';
 import {routes} from './auth-routing';
 
 @NgModule({
@@ -11,6 +12,7 @@ import {routes} from './auth-routing';
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
+    MDBBootstrapModules
   ],
   declarations: [
     ...authenticationComponents

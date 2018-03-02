@@ -2,7 +2,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { UsersComponent } from "./users/users.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { OrdersComponent } from "./orders/orders.component";
-import { ReviewsComponent } from "./reviews/reviews.component";
+import { TestimonialsComponent } from "./testimonials/testimonials.component";
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { ProductsComponent } from './products/products.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -20,7 +20,7 @@ export const adminComponents = [
   UsersComponent,
   NotificationsComponent,
   OrdersComponent,
-  ReviewsComponent,
+  TestimonialsComponent,
   SubscriptionsComponent,
   ProductsComponent,
   MessagesComponent,

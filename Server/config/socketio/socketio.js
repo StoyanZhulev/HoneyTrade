@@ -1,7 +1,7 @@
 const Message = require('mongoose').model('Message');
 const Notification = require('mongoose').model('Notification');
 const Product = require('mongoose').model('Product');
-const Review = require('mongoose').model('Review');
+const Testimonial = require('mongoose').model('Testimonial');
 const Honey = require('mongoose').model('Honey');
 const CompanyInfo = require('mongoose').model('CompanyInfo');
 
@@ -20,8 +20,8 @@ module.exports = (server) => {
     let io = require('socket.io')(server);
 
     io.on('connection',async (socket) => {
-        let reviews = await Review.find();
-        socket.emit('reviews', reviews);
+        let testimonials = await Testimonial.find();
+        socket.emit('testimonials', testimonials);
 
         let products = await Product.find();
         socket.emit('products', products);

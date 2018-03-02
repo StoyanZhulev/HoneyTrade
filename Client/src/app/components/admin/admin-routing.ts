@@ -3,7 +3,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from "./users/users.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { OrdersComponent } from "./orders/orders.component";
-import { ReviewsComponent } from "./reviews/reviews.component";
+import { TestimonialsComponent } from "./testimonials/testimonials.component";
 import { SubscriptionsComponent } from "./subscriptions/subscriptions.component";
 import { ProductsComponent } from "./products/products.component";
 import { MessagesComponent } from './messages/messages.component';
@@ -17,12 +17,12 @@ import { PartnerDetailsComponent } from './partner-details/partner-details.compo
 
 
 export const routes: Routes = [
-  {  path: '', component: AdminComponent,
+  {  path: 'admin', component: AdminComponent,
   children: [
     { path: 'users', component:  UsersComponent},
     { path: 'notifications', component: NotificationsComponent },
     { path: 'orders', component: OrdersComponent },
-    { path: 'reviews', component: ReviewsComponent },
+    { path: 'testimonials', component: TestimonialsComponent },
     { path: 'subscriptions', component: SubscriptionsComponent },
     { path: 'products', component: ProductsComponent },
     { path: 'messages', component: MessagesComponent },
