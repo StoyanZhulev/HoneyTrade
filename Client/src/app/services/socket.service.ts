@@ -16,11 +16,21 @@ import { ProductsService } from './products.service';
 import { AdminPartneshipRequestsService } from './admin/admin-partnership-requests/admin-partnership-requests.service';
 import { HoneyService } from './honey.service';
 import { CompanyInfoService } from './company-info.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/state/app-state';
+import { GetTestimonialSuccessAction } from '../store/actions/testimonial.actions';
+import { GetProductsSuccessAction } from '../store/actions/product.actions';
+import { GetHoneySuccessAction } from '../store/actions/honey.actions';
+import { GetCompanyInfoSuccessAction } from '../store/actions/company-info.action';
+import { GetUserNotificationsSuccessAction, GetUserMessagesSuccessAction, GetUserSuccessAction, GetUserSubscriptionsSuccessAction } from '../store/actions/user.actions';
+import { GetPartnersSuccessAction } from '../store/actions/partner.actions';
+import { GetSubscriptionsSuccessAction } from '../store/actions/subscription.actions';
 
 @Injectable()
 export class SocketService {
   private url = 'http://localhost:3000/';
   private socket;
+  
 
 
   constructor(
@@ -34,86 +44,115 @@ export class SocketService {
     private productsService: ProductsService,
     private adminPartnershipRequestsService: AdminPartneshipRequestsService,
     private honeyService: HoneyService,
-    private companyInfoService: CompanyInfoService
+    private companyInfoService: CompanyInfoService,
+
+    private store: Store<AppState>
   ) { }
 
   disconnect() {
     this.socket.disconnect();
   }
 
-  connect(email: string) {
+  sendEmail(email) {
+    this.socket.emit('userEmail', email);
+  
+  }
+
+  connect() {
     this.socket = io(this.url);
 
-    if (email) {
-      this.socket.emit('userEmail', email);
-
-      if (email === 'admin@honeymarket.com') {
-        this.socket.on('admin-subscriptions', subs => {
-          this.adminSubscriptionService.updateSubscriptions(subs);
-        })
-
-        this.socket.on('admin-orders', orders => {
-          this.adminOrdersService.updateOrders(orders);
-        })
-
-        this.socket.on('admin-partnership-requests', requests => {
-          this.adminPartnershipRequestsService.updateRequests(requests)
-        })
-
-        this.socket.on('admin-users-count', count => {
-          this.adminUsersService.updateUsersCount(count);
-        })
-
-        this.socket.on('admin-users', users => {
-          this.adminUsersService.updateUsers(users);
-        })
-
-        this.socket.on('admin-beekeepers', users => {
-          this.adminUsersService.updateBeekeepers(users);
-        })
-
-        this.socket.on('admin-buyers', users => {
-          this.adminUsersService.updateBuyers(users);
-        })
-
-        this.socket.on('admin-partners', users => {
-          this.adminUsersService.updatePartners(users);
-        })
-      }
-
-      this.socket.on('notifications', nots => {
-        this.notificationService.updateNotifications(nots);
-      })
-  
-      this.socket.on('messages', count => {
-        this.messageService.updateMessages(count);
-      })
-    }
- 
     this.socket.on('testimonials', testimonials => {
+      this.store.dispatch(new GetTestimonialSuccessAction(testimonials));
       this.TestimonialsService.updateTestimonials(testimonials);
     })
-  
+
     this.socket.on('products', products => {
+      this.store.dispatch(new GetProductsSuccessAction(products));
       this.productsService.updateProducts(products);
     })
 
     this.socket.on('honeys', honeys => {
+      this.store.dispatch(new GetHoneySuccessAction(honeys));
       this.honeyService.updateHoneys(honeys);
     })
 
     this.socket.on('companyInfo', info => {
+      this.store.dispatch(new GetCompanyInfoSuccessAction(info));
       this.companyInfoService.updateCompanyInfo(info);
     })
+
+    this.socket.on('partners', partners => {
+      this.store.dispatch(new GetPartnersSuccessAction(partners))
+    })
+
+    //if (email === 'admin@honeymarket.com') {
+      this.socket.on('admin-subscriptions', subs => {
+        this.store.dispatch(new GetSubscriptionsSuccessAction(subs));
+        this.adminSubscriptionService.updateSubscriptions(subs);
+      })
+
+      this.socket.on('admin-orders', orders => {
+        this.adminOrdersService.updateOrders(orders);
+      })
+
+      this.socket.on('admin-partnership-requests', requests => {
+        this.adminPartnershipRequestsService.updateRequests(requests)
+      })
+
+      this.socket.on('admin-users-count', count => {
+        this.adminUsersService.updateUsersCount(count);
+      })
+
+      this.socket.on('admin-users', users => {
+        this.adminUsersService.updateUsers(users);
+      })
+
+      this.socket.on('admin-beekeepers', users => {
+        this.adminUsersService.updateBeekeepers(users);
+      })
+
+      this.socket.on('admin-buyers', users => {
+        this.adminUsersService.updateBuyers(users);
+      })
+
+      this.socket.on('admin-partners', users => {
+        this.adminUsersService.updatePartners(users);
+      })
+   // }
+
+    this.socket.on('notifications', nots => {
+      console.log('notifications', nots)
+      this.store.dispatch(new GetUserNotificationsSuccessAction(nots));
+      this.notificationService.updateNotifications(nots);
+    })
+
+    this.socket.on('messages', messages => {
+      console.log('messages', messages)
+      this.store.dispatch(new GetUserMessagesSuccessAction(messages))
+      this.messageService.updateMessages(messages);
+    })
+
+    this.socket.on('subscriptions', subscr => {
+      this.store.dispatch(new GetUserSubscriptionsSuccessAction(subscr))      
+    })
+
+    this.socket.on('currentUser', u => {
+      console.log(u)
+      this.store.dispatch(new GetUserSuccessAction(u))
+    })
+
     
 
     return () => {
       this.socket.disconnect();
     };
   }
+  getAdminState(){
+    this.socket.emit('getAdminState')
+  }
 
-  sendUserEmail(email) {
-    console.log('sending email');
-    this.socket.emit('userEmail', email);
+  getCurrentUserInfo(email){
+    console.log(email)
+    this.socket.emit('getCurrentUserInfo', email);
   }
 }

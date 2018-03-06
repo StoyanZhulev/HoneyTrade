@@ -6,13 +6,17 @@ import { RouterModule } from "@angular/router"
 
 import { MDBBootstrapModules } from 'ng-mdb-pro';
 import {routes} from './auth-routing';
+import { StoreModule } from "@ngrx/store";
+import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    MDBBootstrapModules
+    MDBBootstrapModules,
+    StoreModule.forFeature('user', userReducer)
   ],
   declarations: [
     ...authenticationComponents

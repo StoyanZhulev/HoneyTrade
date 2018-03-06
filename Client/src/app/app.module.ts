@@ -13,11 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component'
 import { HomeComponent } from './components/home/home.component';
 
-import { UsersComponent } from './components/admin/users/users.component';
-import { NotificationsComponent } from './components/admin/notifications/notifications.component';
-import { OrdersComponent } from './components/admin/orders/orders.component';
-
-
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 //import { ErrorInterceptor } from './interceptors/res-err.interceptor';
@@ -44,19 +39,21 @@ import { AdminPartneshipRequestsService } from './services/admin/admin-partnersh
 import { AdminGuard } from "./guards/admin.guard";
 
 import { CookieModule, CookieService } from 'ngx-cookie';
-import { AuthenticationModule } from './components/auth/auth.module';
- import { AdminModule } from './components/admin/admin.module';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { AdminModule } from './components/admin/admin.module';
 
+
+
+import { StoreModule } from '@ngrx/store';
+import { rootReducers } from './store/reducers/root-reducers/index'
 
 import { MDBBootstrapModules } from 'ng-mdb-pro';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
     HomeComponent,
-    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,9 +61,12 @@ import { MDBBootstrapModules } from 'ng-mdb-pro';
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
-    AdminModule,
     CookieModule.forRoot(),
-    MDBBootstrapModules.forRoot()
+    MDBBootstrapModules.forRoot(),
+    StoreModule.forRoot(rootReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 30
+    })
   ],
   providers: [
     NotificationService,

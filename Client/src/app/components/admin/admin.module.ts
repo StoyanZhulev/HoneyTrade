@@ -8,13 +8,18 @@ import {routes} from './admin-routing';
 import { adminComponents } from "./index";
 
 import { MDBBootstrapModules } from 'ng-mdb-pro';
+import { StoreModule } from "@ngrx/store";
+import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
+import { adminReducer } from "../../store/reducers/admin-reducer/admin.reducer";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    MDBBootstrapModules
+    MDBBootstrapModules,
+    
+     StoreModule.forFeature('admin', adminReducer)
   ],
   declarations: [
     ...adminComponents,

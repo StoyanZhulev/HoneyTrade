@@ -19,7 +19,14 @@ export class AppComponent implements OnDestroy, OnInit{
   ){
   }
   ngOnInit(){
-    this.socketService.connect(null);
+    
+    this.socketService.connect();
+    let email = this.cookieService.get('userEmail')
+    if(email){
+      this.socketService.getCurrentUserInfo(email);
+      this.socketService.sendEmail(email)
+    }
+    
   }
 
   getCookie(key: string): void{
@@ -29,6 +36,7 @@ export class AppComponent implements OnDestroy, OnInit{
 
   ngOnDestroy(): void {
     this.cookieService.removeAll();
+    // this.socketService.disconnect();
   }
 
 }

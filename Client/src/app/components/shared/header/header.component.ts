@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild(LoginComponent) loginForm: LoginComponent;
 
-
   public notifications: Notification[];
   public loggedIn: boolean;
   public unreadMessageCount: number;
@@ -47,13 +46,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     console.log('in header')
     if(this.cookieService.get('token')){
-      this.socketService.connect(this.cookieService.get('userEmail'));
+      console.log('asdasassd')
+            this.socketService.sendEmail(this.cookieService.get('userEmail'));
     }
     this.isLoggedIn();
     console.log(this.isAdmin)
   }
 
   isLoggedIn(): void {
+    console.log('asdasdasd')
     if (this.cookieService.get('token')) {
       this.loggedIn = true;
       this.isAdminLogged();
@@ -85,7 +86,6 @@ export class HeaderComponent implements OnInit {
     this.headerService.updateisAdmin(false);
     this.loggedIn = false;
     this.isAdmin = false;
-    this.socketService.disconnect();
   }
 
 }

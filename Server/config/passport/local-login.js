@@ -43,6 +43,7 @@ module.exports = new PassportLocalStrategy({
           'firstName': userData.firstName,
           'lastName': userData.lastName,
           'email': userData.email,
+          'dateRegistered': userData.dateRegistered,          
           'role': 'user'
         }
         break;
@@ -56,22 +57,26 @@ module.exports = new PassportLocalStrategy({
           'lastName': userData.lastName,
           'location': userData.location,
           'email': userData.email,
+          'dateRegistered': userData.dateRegistered,
           'role': 'beekeeper'
         }
         break;
       case 'buyer':
         userData = await Buyer.findOne({ email: user.email });
-        ispartner = await Partner.findOne({ companyEmail: user.email });
+        ispartner = await Partner.findOne({ companyEmail: user.email }).populate('orders');
         userToReturn = {
           'id': userData._id,
           'companyName': userData.companyName,
           'companyInformation': userData.companyInformation,
           'companyLocation': userData.companyLocation,
           'email': userData.email,
+          'logo': userData.logoImageUrl,
+          'dateRegistered': userData.dateRegistered,          
         }
 
         if (ispartner) {
           userToReturn['role'] = 'partner'
+          userToReturn['orders'] = ispartner.orders;
         } else {
           userToReturn['role'] = 'buyer'
         }

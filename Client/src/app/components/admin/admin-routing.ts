@@ -17,7 +17,7 @@ import { PartnerDetailsComponent } from './partner-details/partner-details.compo
 
 
 export const routes: Routes = [
-  {  path: 'admin', component: AdminComponent,
+  {  path: '', component: AdminComponent,
   children: [
     { path: 'users', component:  UsersComponent},
     { path: 'notifications', component: NotificationsComponent },

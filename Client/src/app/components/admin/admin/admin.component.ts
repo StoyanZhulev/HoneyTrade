@@ -14,6 +14,10 @@ import { AdminSubscriptionService } from '../../../services/admin/admin-subscipt
 import { ProductsService } from '../../../services/products.service';
 import { AdminPartneshipRequestsService } from '../../../services/admin/admin-partnership-requests/admin-partnership-requests.service';
 import { HoneyService } from '../../../services/honey.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/state/app-state';
+import { ResetUserAction } from '../../../store/actions/user.actions';
+import { ResetAdminAction } from '../../../store/actions/subscription.actions';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -43,12 +47,14 @@ export class AdminComponent implements OnInit {
     private adminSubscriptionsService: AdminSubscriptionService,
     private productsService: ProductsService,
     private adminPartnershipRequestsservice: AdminPartneshipRequestsService,
-    private honeyService: HoneyService
+    private honeyService: HoneyService,
+    private store: Store<AppState>
   ) {
 
   }
 
   ngOnInit() {
+    this.socketService.getAdminState();
     this.adminOrdersService.ordersRecieved$.subscribe(orders => {
       this.ordersCount = orders.length;
     })
@@ -87,11 +93,12 @@ export class AdminComponent implements OnInit {
   }
 
   logout() {
+    this.store.dispatch(new ResetUserAction());
+    this.store.dispatch(new ResetAdminAction());
     console.log('logout admin')
     this.cookieService.removeAll();
     this.headerService.updateLoggedin(false);
     this.headerService.updateisAdmin(false);
-    this.socketService.disconnect();
   }
 
 }

@@ -12,6 +12,7 @@ const buyerSchema = new mongoose.Schema({
     hashedPass: { type: mongoose.Schema.Types.String, required: true },
     salt: { type: mongoose.Schema.Types.String, required: true },
     dateRegistered: { type: mongoose.Schema.Types.Date, required: true },
+    
 });
 
 buyerSchema.method({

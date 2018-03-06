@@ -1,11 +1,13 @@
 export class Buyer {
+    id: string
     companyName: string;
     companyLocation:  {country: String, city: String};
     companyInformation: string
     email: string;
     //TODO: upload
-    logoImageUrl : string
+    logo : string
     dateRegistered: Date
+    role: string
 }
 
 
