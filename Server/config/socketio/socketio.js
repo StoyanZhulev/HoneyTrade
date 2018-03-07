@@ -42,7 +42,7 @@ module.exports = (server) => {
         let companyInfo = await CompanyInfo.findOne();
         socket.emit('companyInfo', companyInfo);
 
-        let partners = await Partner.find({}).populate('company').populate('orders');
+        let partners = await Partner.find({}).populate('company', '_id companyName companyLocation companyInformation email logoUmageUrl').populate('orders');
         socket.emit('partners', partners)
 
         socket.on('userEmail', async (userEmail) => {

@@ -8,7 +8,7 @@ const buyerSchema = new mongoose.Schema({
     companyInformation: {type: mongoose.Schema.Types.String, required: true },
     email: { type: mongoose.Schema.Types.String, required: true, unique: true },
     //TODO: upload
-    logoImageUrl : {type: String, required: true},
+    logoImageUrl : {type: String},
     hashedPass: { type: mongoose.Schema.Types.String, required: true },
     salt: { type: mongoose.Schema.Types.String, required: true },
     dateRegistered: { type: mongoose.Schema.Types.Date, required: true },

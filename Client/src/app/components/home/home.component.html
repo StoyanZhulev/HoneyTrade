@@ -1,38 +1,509 @@
 <header>
     <app-header></app-header>
 </header>
-<div class="view intro hm-purple-light">
-    <div class="full-bg-img flex-center">
-        <div class="container text-center white-text wow animated fadeInUp">
-            <h2>This Navbar is fixed and transparent</h2>
-            <br>
-            <h5>It will always stay visible on the top, even when you scroll down</h5>
-            <p>Navbar's background will switch from transparent to solid color while scrolling down</p>
-            <br>
-            <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
-        </div>
-    </div>
-</div>
 
-<main class="text-center py-5">
+<div class="view intro hm-white-light" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2844%29.jpg); background-attachment: fixed; height: 1000px;">
+    <div class="full-bg-img">
+        <div class="container wow fadeInDown">
+            <div class="d-flex align-items-center d-flex justify-content-center" style="height: 900px">
+                <!--Card-->
+                <div class="card card-cascade wider reverse my-4">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+                   <!--Card image-->
+                    <div class="view overlay hm-white-slight waves-light" mdbRippleRadius>
+                        <mdb-carousel [isControls]="false" [interval]="1500" [animation]="'slide'">
+                            <!--First slide-->
+                            <mdb-slide>
+                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+                            </mdb-slide>
+                            <!--/First slide-->
+                            <!--Second slide-->
+                            <mdb-slide>
+                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+                            </mdb-slide>
+                            <!--/Second slide-->
+                            <!--Third slide-->
+                            <mdb-slide>
+                                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+                            </mdb-slide>
+                            <!--/Third slide-->
+                        </mdb-carousel>
+                        <!--/.Carousel Wrapper-->
 
-                <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                    qui officia deserunt mollit anim id est laborum.</p>
+                        <a>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                    <!--/Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                        <!--Title-->
+                        <h4 class="card-title">
+                            <strong>My adventure</strong>
+                        </h4>
+                        <h5 class="indigo-text">
+                            <strong>Photography</strong>
+                        </h5>
+
+                        <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam
+                            rem aperiam.
+                        </p>
+
+                        <!--Linkedin-->
+                        <a class="icons-sm li-ic">
+                            <i class="fa fa-linkedin"> </i>
+                        </a>
+                        <!--Twitter-->
+                        <a class="icons-sm tw-ic">
+                            <i class="fa fa-twitter"> </i>
+                        </a>
+                        <!--Dribbble-->
+                        <a class="icons-sm fb-ic">
+                            <i class="fa fa-facebook"> </i>
+                        </a>
+
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
+
+                <!--/First slide-->
+                <!--Second slide-->
 
             </div>
         </div>
     </div>
+</div>
 
-</main>
+<div class="container">
+    <!--Grid row-->
+    <div class="row cont">
+        <!--Grid column-->
+        <div class="col-md-6 text-center mb-6 col wow flipInX" data-wow-delay="0.5s">
 
+            <div class="card card-image mb-6" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 col">
+                    <div>
+                        <h5 class="pink-text">
+                            <i class="fa fa-pie-chart"></i> About us</h5>
+                        <h3 class="card-title pt-2">
+                            <strong>This is card title</strong>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                            Odit sed qui, dolorum!asdasdasd.r sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
+                            voluptatem,
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Grid column-->
+        <div class="col-md-6 text-center mb-6 col wow flipInX" data-wow-delay="0.5s">
+            <!-- Card -->
+            <div class="card card-image mb-6" style="background-image: url('https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/playlists/playlist_341/why_we_need_bees_1200x627.jpg?quality=89&w=800');">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h5 class="pink-text">
+                            <i class="fa fa-pie-chart"></i> Our Products</h5>
+                        <h3 class="card-title pt-2">
+                            <strong>This is card title</strong>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicinasdfsdfsdfg elit. Repellat fugiat, laboriosam,
+                            voluptatem, optio vero odio nam sit officia accusamus minus error g elit. Repellat fugiat, laboriosam,
+                            voluptatem, optio vero odio nam sit officia accusamus minus error g elit. Repellat fugiat, laboriosam,
+                            voluptatem, optio vero odio nam sit officia accusamus minus error g elit. Repellat fugiat, laboriosam,
+                            voluptatem,
+                        </p>
+                        <a class="btn btn-pink waves-light" mdbRippleRadius>
+                            <i class="fa fa-clone left"></i> View products</a>
+                    </div>
+                </div>
+                <!-- Content -->
+            </div>
+            <!-- Card -->
+        </div>
+
+    </div>
+    <!--Grid row-->
+</div>
+
+<div class="view intro hm-white-light" style="background-image: none; z-index: 0; min-height: 500px;">
+    <h2>Our top partners</h2>
+    <div class="full-bg-img">
+        <div class="container flex-center">
+            <div class="row mt-5 py-5">
+                <!-- <div class="col-md-12 wow fadeIn mb-3" style="animation-name: none; visibility: visible;">
+                    
+                </div> -->
+
+                <div class="col-md-4 wow fadeInLeft " data-wow-delay="0.5s">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight waves-light" mdbRippleRadius>
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" class="img-fluid">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/Card image-->
+
+                        <!--Card content-->
+                        <div class="card-body text-center">
+                            <!--Title-->
+                            <h4 class="card-title">
+                                <strong>Alice Mayer</strong>
+                            </h4>
+                            <h5 class="indigo-text">
+                                <strong>Photographer</strong>
+                            </h5>
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+
+                <div class="col-md-4 wow fadeInDown" data-wow-delay="0.5s">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight waves-light" mdbRippleRadius>
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" class="img-fluid">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/Card image-->
+
+                        <!--Card content-->
+                        <div class="card-body text-center">
+                            <!--Title-->
+                            <h4 class="card-title">
+                                <strong>Alice Mayer</strong>
+                            </h4>
+                            <h5 class="indigo-text">
+                                <strong>Photographer</strong>
+                            </h5>
+
+
+
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+
+                <div class="col-md-4 wow fadeInRight" data-wow-delay="0.5s">
+                    <!--Card-->
+                    <div class="card card-cascade wider">
+
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight waves-light" mdbRippleRadius>
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" class="img-fluid">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <!--/Card image-->
+
+                        <!--Card content-->
+                        <div class="card-body text-center">
+                            <!--Title-->
+                            <h4 class="card-title">
+                                <strong>Alice Mayer</strong>
+                            </h4>
+                            <h5 class="indigo-text">
+                                <strong>Photographer</strong>
+                            </h5>
+
+                        </div>
+                        <!--/.Card content-->
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="video-parallax">
+        <video src="https://mdbootstrap.com/img/video/flowers.mp4" frameborder="0" autoplay="" loop=""></video>
+    </div>
+</div>
+
+<div class="container">
+    <h2 style="align-self:center">Testimonials</h2>
+    <!--Grid row-->
+    <div class="row">
+        <section class="section text-center pb-4">
+
+            <!--Section heading-->
+            <div class="row">
+
+                <!--Carousel Wrapper-->
+                <mdb-carousel class="carousel no-flex testimonial-carousel carousel-multi-item multi-animation slide wow fadeInUp" data-wow-delay="0.5s"
+                    [type]="'carousel-multi-item'" [animation]="'slide'">
+                    <!--First slide-->
+                    <mdb-slide>
+                        <!--Grid column-->
+                        <div class="col-md-4">
+
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Anna Deynah</h4>
+                                <h6 class="blue-text font-bold">Web Designer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic
+                                    tenetur.
+                                </p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-half-full"> </i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>John Doe</h4>
+                                <h6 class="blue-text font-bold">Web Developer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+
+                                <!--Content-->
+                                <h4>Abbey Clark</h4>
+                                <h6 class="blue-text font-bold">Photographer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
+                                    molestiae.
+                                </p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-o"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </mdb-slide>
+                    <!--/First slide-->
+                    <!--Second slide-->
+                    <mdb-slide>
+                        <!--Grid column-->
+                        <div class="col-md-4">
+
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Blake Dabney</h4>
+                                <h6 class="blue-text font-bold">Web Designer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis laboriosam.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-half-full"> </i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Andrea Clay</h4>
+                                <h6 class="blue-text font-bold">Front-end developer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic
+                                    tenetur quae.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Cami Gosse</h4>
+                                <h6 class="blue-text font-bold">Phtographer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-o"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </mdb-slide>
+                    <!--/Second slide-->
+                    <!--Third slide-->
+                    <mdb-slide>
+                        <!--Grid column-->
+                        <div class="col-md-4">
+
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Bobby Haley</h4>
+                                <h6 class="blue-text font-bold">Web Developer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic
+                                    tenetur quae.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Elisa Janson</h4>
+                                <h6 class="blue-text font-bold">Marketer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-half-full"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-4 clearfix d-none d-md-block">
+                            <div class="testimonial">
+                                <!--Avatar-->
+
+                                <!--Content-->
+                                <h4>Robert Jacobs</h4>
+                                <h6 class="blue-text font-bold">Front-end developer</h6>
+                                <p>
+                                    <i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis laboriosam.</p>
+
+                                <!--Review-->
+                                <div class="grey-text">
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star"> </i>
+                                    <i class="fa fa-star-o"> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </mdb-slide>
+                    <!--/Third slide-->
+                </mdb-carousel>
+                <!--Carousel Wrapper-->
+
+            </div>
+
+        </section>
+    </div>
+    <!--Grid row-->
+</div>
+
+<div class="view intro hm-purple-slight" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg); background-attachment: fixed; min-height: 400px">
+    <div class="full-bg-img">
+        <div class="container">
+            <div class="d-flex align-items-center d-flex justify-content-center" style="height: 500px">
+                <div class="contacts">
+                    <h4>Contacts</h4>
+                    <p>Factory:</p>
+                    <p>Adress: </p>
+                    <p>Phone number: </p>
+                    <p>Office</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

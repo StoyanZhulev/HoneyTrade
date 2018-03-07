@@ -8,7 +8,8 @@ import { SocketService } from './socket.service';
 
 import { CookieService } from 'ngx-cookie';
 
-const login = 'login'
+const login = 'login';
+const signUp = 'register'
 
 
 @Injectable()
@@ -21,13 +22,13 @@ export class AutorizationService {
 
 	
 	
-    // register(payload: UserPayload) {
-    //     return this.http.post<UserPayload>(baseUrl + singUp, payload, {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    // }
+    registerUser(user) {
+        return this.http.post(environment.apiBaseUrl + signUp, user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 
 
 

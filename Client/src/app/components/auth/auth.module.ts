@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core"
 import { authenticationComponents } from "./index"
 import { CommonModule } from "@angular/common"
-import { FormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { RouterModule } from "@angular/router"
 
 import { MDBBootstrapModules } from 'ng-mdb-pro';
@@ -14,6 +14,7 @@ import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     MDBBootstrapModules,
     StoreModule.forFeature('user', userReducer)

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './components/shared/shared.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component'
 import { HomeComponent } from './components/home/home.component';
 
@@ -60,6 +61,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     RouterModule.forRoot(routes),
     HttpClientModule,
     SharedModule,
+    FormsModule,
     ReactiveFormsModule,
     CookieModule.forRoot(),
     MDBBootstrapModules.forRoot(),

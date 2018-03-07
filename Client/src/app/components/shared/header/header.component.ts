@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { SocketService } from '../../../services/socket.service';
 import { MessageService } from '../../../services/message.service';
 import { LoginComponent } from '../../auth/login/login.component';
+import { RegisterComponent } from '../../auth/register/register.component';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,8 @@ import { LoginComponent } from '../../auth/login/login.component';
 export class HeaderComponent implements OnInit {
 
   @ViewChild(LoginComponent) loginForm: LoginComponent;
+  @ViewChild(RegisterComponent) registerForm: RegisterComponent;
+  
 
   public notifications: Notification[];
   public loggedIn: boolean;

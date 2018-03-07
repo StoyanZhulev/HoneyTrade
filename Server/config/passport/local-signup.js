@@ -73,6 +73,7 @@ module.exports = new PassportLocalStrategy({
             companyName: reqUser.companyName,
             companyLocation: reqUser.companyLocation,
             companyInformation: reqUser.companyInformation,
+            logoImageUrl: reqUser.logoImageUrl,
             email: reqUser.email,
             hashedPass: hashedPass,
             salt: salt,
