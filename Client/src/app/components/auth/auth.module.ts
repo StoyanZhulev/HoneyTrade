@@ -8,6 +8,9 @@ import { MDBBootstrapModules } from 'ng-mdb-pro';
 import {routes} from './auth-routing';
 import { StoreModule } from "@ngrx/store";
 import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
+import { UserRegisterComponent } from './register/user-register/user-register.component';
+import { BeekeeperRegisterComponent } from './register/beekeeper-register/beekeeper-register.component';
+import { BuyerRegisterComponent } from './register/buyer-register/buyer-register.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
     StoreModule.forFeature('user', userReducer)
   ],
   declarations: [
-    ...authenticationComponents
+    ...authenticationComponents,
+    UserRegisterComponent,
+    BeekeeperRegisterComponent,
+    BuyerRegisterComponent
   ],
   exports: [
     ...authenticationComponents

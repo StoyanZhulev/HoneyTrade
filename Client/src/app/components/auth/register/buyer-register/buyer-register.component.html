@@ -1,0 +1,82 @@
+<form [formGroup]="buyerRegForm" (submit)="registerBuyer()">
+    <div class="modal-body mb-1">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-copyright prefix"></i>
+                    <input mdbActive type="text" id="buyerCompanyname" class="form-control" formControlName="companyname" required>
+                    <label for="buyerCompanyname">Company name</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input mdbActive type="text" id="buyerEmail" class="form-control" formControlName="email" required>
+                    <label for="buyerEmail">Email</label>
+                    <!-- <div *ngIf="userRegForm.controls['email'].touched">
+                  <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors">You must enter a value!</div>
+                  <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors?.email">You must enter a valid email!</div>
+                  
+              </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-globe prefix"></i>
+                    <input mdbActive type="text" id="buyerCountry" class="form-control" formControlName="country" required>
+                    <label for="buyerCountry">Country</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-globe prefix"></i>
+                    <input mdbActive type="text" id="buyerCity" class="form-control" formControlName="city" required>
+                    <label for="buyerCity">City</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-form form-sm">
+            <i class="fa fa-info-circle prefix"></i>
+            <textarea mdbActive type="text" id="buyerInfo" class="form-control md-textarea" formControlName="info" required></textarea>
+            <label for="buyerInfo">Company Information</label>
+        </div>
+
+        <div class="md-form form-sm">
+            <i class="fa fa-lock prefix"></i>
+            <input mdbActive type="text" id="buyerLogo" class="form-control" formControlName="logo" required>
+            <label for="buyerLogo">Company logo</label>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="buyerPass" class="form-control" formControlName="password" required>
+                    <label for="buyerPass">Password</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="buyerRepeatPass" class="form-control" formControlName="repeatPassword" required>
+                    <label for="buyerRepeatPass">Confirm password</label>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <button class="btn btn-info waves-light amber darken-1" mdbRippleRadius>Sign up
+                <i class="fa fa-sign-in ml-1"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<!--Footer-->
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal" (click)="close()" mdbRippleRadius>Close</button>
+</div>

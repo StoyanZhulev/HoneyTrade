@@ -1,0 +1,7 @@
+<mdb-carousel class="carousel no-flex testimonial-carousel carousel-multi-item multi-animation slide wow fadeInUp" data-wow-delay="0.5s"
+  [type]="'carousel-multi-item'" [animation]="'slide'">
+  <!--First slide-->
+  <mdb-slide *ngFor="let arr of slidesarr">
+    <app-testimonial-card *ngFor="let testimonial of arr" [testimonial]="testimonial"></app-testimonial-card>
+  </mdb-slide>
+</mdb-carousel>

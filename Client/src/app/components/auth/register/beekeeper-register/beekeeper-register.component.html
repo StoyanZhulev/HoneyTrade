@@ -1,0 +1,74 @@
+<form [formGroup]="beekeeperRegForm"  (submit)="registerBeekeeper()">
+    <div class="modal-body mb-1">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-id-badge prefix"></i>
+                    <input mdbActive type="text" id="beekeeperFirstname" class="form-control" formControlName="firstname" required>
+                    <label for="beekeeperFirstname">First name</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-id-badge prefix"></i>
+                    <input mdbActive type="text" id="beekeeperLastname" class="form-control" formControlName="lastname" required>
+                    <label for="beekeeperLastname">Last name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-copyright prefix"></i>
+                    <input mdbActive type="text" id="beekeeperCompanyname" class="form-control" formControlName="companyname" required>
+                    <label for="beekeeperCompanyname">Company name</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-globe prefix"></i>
+                    <input mdbActive type="text" id="beekeeperLocation" class="form-control" formControlName="location" required>
+                    <label for="beekeeperLocation">Location</label>
+                </div>
+            </div>
+        </div>
+        <div class="md-form form-sm">
+            <i class="fa fa-envelope prefix"></i>
+            <input mdbActive type="text" id="beekeeperEmail" class="form-control" formControlName="email" required>
+            <label for="beekeeperEmail">Email</label>
+            <!-- <div *ngIf="userRegForm.controls['email'].touched">
+              <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors">You must enter a value!</div>
+              <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors?.email">You must enter a valid email!</div>
+              
+          </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="beekeeperPass" class="form-control" formControlName="password" required>
+                    <label for="beekeeperPass">Password</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="beekeeperRepeatPass" class="form-control" formControlName="repeatPassword" required>
+                    <label for="beekeeperRepeatPass">Confirm password</label>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <button class="btn btn-info waves-light amber darken-1" mdbRippleRadius>Sign up
+                <i class="fa fa-sign-in ml-1"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<!--Footer-->
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal" (click)="close()" mdbRippleRadius>Close</button>
+</div>

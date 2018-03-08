@@ -1,209 +1,32 @@
-
-
-<div mdbModal #registerForm="mdb-modal" class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #registerForm="mdb-modal" class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
-        <!--Content-->
         <div class="modal-content">
             <div class="modal-header orange darken-1 white-text">
-                <h4 class="title"><i class="fa fa-user"></i> Register</h4>
+                <h4 class="title">
+                    <i class="fa fa-user"></i> Register</h4>
                 <button type="button" class="close waves-effect waves-light orange darken-1" data-dismiss="modal" aria-label="Close" (click)="registerForm.hide()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <!--Modal cascading tabs-->
+
             <div class="modal-c-tabs">
-
-                <!-- Tab panels -->
-                <mdb-tabset #staticTabs [buttonClass]="'nav nav-tabs tabs-2 amber darken-1'" [contentClass]="''" class="tab-content">
-                    <!--Panel 7-->
+                <mdb-tabset #staticTabs [buttonClass]="'nav nav-tabs tabs-2 amber darken-1'" [contentClass]="''" class="tab-content">   
+                    
                     <mdb-tab class="tab-pane fade in show active" id="asUser" role="tabpanel" heading="<i class='fa fa-user-plus mr-1'></i> As User">
-
-                        <!--Body-->
-                        <form [formGroup]="userRegForm" (submit)="registerUser()">
-                        <div class="modal-body mb-1">
-                            <div class="md-form form-sm">
-                                <i class="fa fa-lock prefix"></i>
-                                <input mdbActive type="text" id="userFirstname" class="form-control" formControlName="firstname"  required>
-                                <label for="userFirstname">First name</label>
-                            </div>
-                            <div class="md-form form-sm">
-                                <i class="fa fa-lock prefix"></i>
-                                <input mdbActive type="text" id="userLastname" class="form-control" formControlName="lastname"  required>
-                                <label for="userLastname">Last name</label>
-                            </div>
-                            <div class="md-form form-sm">
-                                <i class="fa fa-envelope prefix"></i>
-                                
-                                <input mdbActive type="text" id="userEmail" class="form-control" formControlName="email" required>
-                                <label for="userEmail">Email</label>
-                                <!-- <div *ngIf="userRegForm.controls['email'].touched">
-                                    <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors">You must enter a value!</div>
-                                    <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors?.email">You must enter a valid email!</div>
-                                    
-                                </div> -->
-                            </div>
-
-                            <div class="md-form form-sm">
-                                <i class="fa fa-lock prefix"></i>
-                                <input mdbActive type="password" id="userPass" class="form-control" formControlName="password"  required>
-                                <label for="userPass">Password</label>
-                            </div>
-                            <div class="md-form form-sm">
-                                <i class="fa fa-lock prefix"></i>
-                                <input mdbActive type="password" id="userRepeatPass" class="form-control" formControlName="repeatPassword"  required>
-                                <label for="userRepeatPass">Confirm password</label>
-                            </div>
-                            <div class="text-center mt-2">
-                                <button class="btn btn-info waves-light amber darken-1" mdbRippleRadius>Log in <i class="fa fa-sign-in ml-1"></i></button>
-                            </div>
-                        </div>
-                      </form>
-                        <!--Footer-->
-                        <div class="modal-footer display-footer">
-                            <div class="options text-center text-md-right mt-1">
-                                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
-                                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
-                            </div>
-                            <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal"  mdbRippleRadius>Close</button>
-                        </div>
-
+                      <app-user-register #userRegForm (closeUserForm)="userRegForm.reset(); beekeeperRegForm.reset(); buyerRegForm.reset(); close()"></app-user-register>
                     </mdb-tab>
-                    <!--/.Panel 7-->
-
-                    <!--Panel 8-->
+               
                     <mdb-tab class="tab-pane fade" id="asBeekeeper" role="tabpanel" heading="<i class='fa fa-user-plus mr-1'></i> As Beekeeper">
-
-                      <form [formGroup]="beekeeperRegForm" (submit)="registerBeekeeper()">
-                          <div class="modal-body mb-1">
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="beekeeperFirstname" class="form-control" formControlName="firstname"  required>
-                                  <label for="beekeeperFirstname">First name</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="beekeeperLastname" class="form-control" formControlName="lastname"  required>
-                                  <label for="beekeeperLastname">Last name</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="beekeeperCompanyname" class="form-control" formControlName="companyname"  required>
-                                  <label for="beekeeperCompanyname">Company name</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="beekeeperLocation" class="form-control" formControlName="location"  required>
-                                  <label for="beekeeperLocation">Location</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-envelope prefix"></i>
-                                  
-                                  <input mdbActive type="text" id="beekeeperEmail" class="form-control" formControlName="email" required>
-                                  <label for="beekeeperEmail">Email</label>
-                                  <!-- <div *ngIf="userRegForm.controls['email'].touched">
-                                      <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors">You must enter a value!</div>
-                                      <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors?.email">You must enter a valid email!</div>
-                                      
-                                  </div> -->
-                              </div>
-  
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="password" id="beekeeperPass" class="form-control" formControlName="password"  required>
-                                  <label for="beekeeperPass">Password</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="password" id="beekeeperRepeatPass" class="form-control" formControlName="repeatPassword"  required>
-                                  <label for="beekeeperRepeatPass">Confirm password</label>
-                              </div>
-                              <div class="text-center mt-2">
-                                  <button class="btn btn-info waves-light amber darken-1" mdbRippleRadius>Log in <i class="fa fa-sign-in ml-1"></i></button>
-                              </div>
-                          </div>
-                        </form>
-                        <!--Footer-->
-                        <div class="modal-footer">
-                            <div class="options text-right">
-                                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
-                            </div>
-                            <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal" (click)="form.hide()" mdbRippleRadius>Close</button>
-                        </div>
+                        <app-beekeeper-register #beekeeperRegForm (closeBeekeeperForm)="userRegForm.reset(); beekeeperRegForm.reset(); buyerRegForm.reset(); close()"></app-beekeeper-register>               
                     </mdb-tab>
-                    <!--/.Panel 8-->
+
                     <mdb-tab class="tab-pane fade" id="asBuyer" role="tabpanel" heading="<i class='fa fa-user-plus mr-1'></i> As Buyer Company">
+                        <app-buyer-register #buyerRegForm (closeBuyerForm)="userRegForm.reset(); beekeeperRegForm.reset(); buyerRegForm.reset(); close()"></app-buyer-register>                        
+                    </mdb-tab>
 
-                      <form [formGroup]="buyerRegForm" (submit)="registerBuyer()">
-                          <div class="modal-body mb-1">
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="buyerCompanyname" class="form-control" formControlName="companyname"  required>
-                                  <label for="buyerCompanyname">Company name</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="buyerCountry" class="form-control" formControlName="country"  required>                    
-                                  <label for="buyerCountry">Country</label>
-                                  
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="buyerCity" class="form-control" formControlName="city"  required>
-                                  <label for="buyerCity">City</label>
-                                  
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-envelope prefix"></i>
-                                  
-                                  <input mdbActive type="text" id="buyerEmail" class="form-control" formControlName="email" required>
-                                  <label for="buyerEmail">Email</label>
-                                  <!-- <div *ngIf="userRegForm.controls['email'].touched">
-                                      <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors">You must enter a value!</div>
-                                      <div class="alert alert-danger" *ngIf="userRegForm.controls['email'].errors?.email">You must enter a valid email!</div>
-                                      
-                                  </div> -->
-                              </div>
-
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <textarea mdbActive type="text" id="buyerInfo" class="form-control" formControlName="info"  required></textarea>
-                                  <label for="buyerInfo">Compan Information</label> 
-                              </div>
-  
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="text" id="buyerLogo" class="form-control" formControlName="logo"  required>
-                                  <label for="buyerLogo">Company logo</label>
-                              </div>
-
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="password" id="buyerPass" class="form-control" formControlName="password"  required>
-                                  <label for="buyerPass">Password</label>
-                              </div>
-                              <div class="md-form form-sm">
-                                  <i class="fa fa-lock prefix"></i>
-                                  <input mdbActive type="password" id="buyerRepeatPass" class="form-control" formControlName="repeatPassword"  required>
-                                  <label for="buyerRepeatPass">Confirm password</label>
-                              </div>
-                              <div class="text-center mt-2">
-                                  <button class="btn btn-info waves-light amber darken-1" mdbRippleRadius>Log in <i class="fa fa-sign-in ml-1"></i></button>
-                              </div>
-                          </div>
-                        </form>
-                      <!--Footer-->
-                      <div class="modal-footer">
-                          <div class="options text-right">
-                              <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
-                          </div>
-                          <button type="button" class="btn btn-outline-info ml-auto" data-dismiss="modal" (click)="form.hide()" mdbRippleRadius>Close</button>
-                      </div>
-                  </mdb-tab>
                 </mdb-tabset>
-
             </div>
         </div>
-        <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login / Register Form-->

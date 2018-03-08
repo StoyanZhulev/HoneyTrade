@@ -1,0 +1,13 @@
+<div class="row mt-5 py-5">
+  <div *ngIf="partner1" class="col-md-4 wow fadeInLeft " data-wow-delay="0.5s">
+    <app-top-partner-card [partner]="partner1"></app-top-partner-card>
+  </div>
+
+  <div *ngIf="partner2"  class="col-md-4 wow fadeInDown" data-wow-delay="0.5s">
+      <app-top-partner-card [partner]="partner2" ></app-top-partner-card>    
+  </div>
+
+  <div *ngIf="partner3" class="col-md-4 wow fadeInRight" data-wow-delay="0.5s">
+      <app-top-partner-card [partner]="partner3" ></app-top-partner-card>    
+  </div>
+</div>

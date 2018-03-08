@@ -11,8 +11,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ErrorComponent } from './components/error/error.component'
-import { HomeComponent } from './components/home/home.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -50,11 +49,14 @@ import { rootReducers } from './store/reducers/root-reducers/index'
 import { MDBBootstrapModules } from 'ng-mdb-pro';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { AgmCoreModule } from '@agm/core';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
-    HomeComponent,
   ],
   imports: [
     BrowserModule,

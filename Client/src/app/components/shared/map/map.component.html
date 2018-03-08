@@ -1,0 +1,32 @@
+<!--Google map-->
+<agm-map class="z-depth-1-half map-container" style="height: 400px;" [latitude]="map.lat" [longitude]="map.lng">
+  <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+</agm-map>
+
+<br>
+<!--Buttons-->
+<div class="row text-center">
+  <div class="col-md-4">
+    <a class="btn-floating blue accent-1 waves-light" mdbRippleRadius>
+      <i class="fa fa-map-marker"></i>
+    </a>
+    <p>Plovdiv</p>
+    <p>Bulgaria</p>
+  </div>
+
+  <div class="col-md-4">
+    <a class="btn-floating blue accent-1 waves-light" mdbRippleRadius>
+      <i class="fa fa-phone"></i>
+    </a>
+    <p>+359 88 987 453</p>
+    <p>Mon - Fri, 8:00-22:00</p>
+  </div>
+
+  <div class="col-md-4">
+    <a class="btn-floating blue accent-1 waves-light" mdbRippleRadius>
+      <i class="fa fa-envelope"></i>
+    </a>
+    <p>info@gmail.com</p>
+    <p>sale@gmail.com</p>
+  </div>
+</div>

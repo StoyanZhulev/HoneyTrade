@@ -95,7 +95,6 @@ export class AdminComponent implements OnInit {
   logout() {
     this.store.dispatch(new ResetUserAction());
     this.store.dispatch(new ResetAdminAction());
-    console.log('logout admin')
     this.cookieService.removeAll();
     this.headerService.updateLoggedin(false);
     this.headerService.updateisAdmin(false);

@@ -1,24 +1,50 @@
-<header>         
-        <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
-            <logo>
-                <a class="logo navbar-brand" href="#"><strong>Navbar</strong></a>
-            </logo>
-            <links>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active waves-light" mdbRippleRadius>
-                        <a class="nav-link" routerLink="/home">Home</a>
-                    </li>
-                    <li class="nav-item waves-light" mdbRippleRadius>
-                        <a class="nav-link" (click)="loginForm.show()" >Login</a>
-                    </li>
-                    <li class="nav-item waves-light" mdbRippleRadius>
-                            <a class="nav-link" (click)="registerForm.show()" >Register</a>
-                        </li>
-                </ul>
-            </links>
-        </mdb-navbar>
-    </header>     
- 
+<header>
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav justify-content-between"
+        [containerInside]="false">
+        <logo>
+            <a class="logo navbar-brand" routerLink="/home">
+                <img src="../../../../bee.png" width="50px" />
+            </a>
+
+            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
+                <i class="fa fa-bell"></i>
+            </a>
+            <span class="counter">1</span>
+
+            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
+                <i class="fa fa-envelope"></i>
+            </a>
+            <span class="counter">2</span>
+
+
+            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
+                <i class="fa fa-bell"></i>
+            </a>
+            <span class="counter">4</span>
+
+        </logo>
+
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <a class="nav-link" routerLink="/home">Home</a>
+                </li>
+                <li *ngIf="!loggedIn" class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" (click)="loginForm.show()">Login</a>
+                </li>
+                <li *ngIf="!loggedIn" class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" (click)="registerForm.show()">Register</a>
+                </li>
+                <li *ngIf="loggedIn" class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </links>
+
+
+    </mdb-navbar>
+</header>
+
 
 
 <app-login #loginForm></app-login>
