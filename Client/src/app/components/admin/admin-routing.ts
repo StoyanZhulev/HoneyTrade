@@ -14,11 +14,12 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { BeekeeperDetailsComponent } from './beekeeper-details/beekeeper-details.component';
 import { BuyerDetailsComponent } from './buyer-details/buyer-details.component';
 import { PartnerDetailsComponent } from './partner-details/partner-details.component';
-
+import { IntroComponent } from './intro/intro.component';
 
 export const routes: Routes = [
   {  path: '', component: AdminComponent,
   children: [
+    { path: 'intro', component: IntroComponent },
     { path: 'users', component:  UsersComponent},
     { path: 'notifications', component: NotificationsComponent },
     { path: 'orders', component: OrdersComponent },

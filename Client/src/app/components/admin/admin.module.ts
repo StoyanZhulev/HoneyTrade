@@ -12,17 +12,22 @@ import { StoreModule } from "@ngrx/store";
 import { userReducer } from "../../store/reducers/user-reducers/user.reducer";
 import { adminReducer } from "../../store/reducers/admin-reducer/admin.reducer";
 
+import { SatPopoverModule } from '@ncstate/sat-popover';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    SatPopoverModule,
     RouterModule.forChild(routes),
     MDBBootstrapModules,
     
      StoreModule.forFeature('admin', adminReducer)
   ],
   declarations: [
-    ...adminComponents,
+    ...adminComponents
     
   ],
   exports: [

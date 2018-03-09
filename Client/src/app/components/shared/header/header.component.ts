@@ -12,6 +12,8 @@ import { RegisterComponent } from '../../auth/register/register.component';
 import { ResetUserAction } from '../../../store/actions/user.actions';
 import { AppState } from '../../../store/state/app-state';
 import { Store } from '@ngrx/store';
+import { Message } from '../../../models/view-models/message.model';
+import { selectUserMessages, selectUserNotifications } from '../../../store/reducers/user-reducers/user.reducer';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +29,11 @@ export class HeaderComponent implements OnInit {
   public loggedIn: boolean;
   private isAdmin: boolean;
 
+  public notifications: Notification[];
+  public unreadNotifications: number;
+
+  public messages: Message[];
+  public unreadMessages: number;
   constructor(
     private cookieService: CookieService,
     private headerService: HeaderService,
@@ -36,6 +43,15 @@ export class HeaderComponent implements OnInit {
   ) {
     this.headerService.loggedIn$.subscribe(data => this.loggedIn = data);
     this.headerService.isAdmin$.subscribe(data => this.isAdmin = data);
+    this.store.select(selectUserNotifications).subscribe((data: Notification[]) => {
+      this.notifications = data;
+      this.unreadNotifications = data.filter(e => e.isRead === false).length;
+    })
+
+    this.store.select(selectUserMessages).subscribe((data: Message[]) => {
+      this.messages = data;
+      this.unreadMessages = data.filter(e => e.isRead === false).length
+    })
   }
 
   ngOnInit() {

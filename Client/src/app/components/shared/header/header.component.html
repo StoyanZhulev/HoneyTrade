@@ -1,31 +1,61 @@
 <header>
     <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav justify-content-between"
-        [containerInside]="false">
-        <logo>
+        [containerInside]="false" style="display:flex; justify-content:space-between">
+        <logo style="display:flex">
             <a class="logo navbar-brand" routerLink="/home">
                 <img src="../../../../bee.png" width="50px" />
             </a>
+            <div class="d-flex">
+                <div *ngIf="loggedIn" class="popover-wrapper" style="position:relative">
+                    <sat-popover #notsPopover horizontalAlign="after" verticalAlign="below" hasBackdrop>
+                        <div class="list-group" style="min-width: 250px; max-width: 400px; max-height:500px; overflow:auto">
+                            <a *ngFor="let not of notifications" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{not.title}}</h5>
+                                    <small>{{not.date | timeAgo}}</small>
+                                </div>
+                                <p class="mb-1">{{not.text}}</p>
+                            </a>
+                        </div>
+                    </sat-popover>
+                    <div class="badge-wrapper">
+                        <a  class="btn-floating btn-sm peach-gradient waves-light" [satPopoverAnchorFor]="notsPopover"
+                            (click)="notsPopover.toggle()" mdbRippleRadius>
+                            <i class="fa fa-bell"></i>
+                        </a>
 
-            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
-                <i class="fa fa-bell"></i>
-            </a>
-            <span class="counter">1</span>
+                        <span *ngIf="unreadNotifications" class="counter">{{unreadNotifications}}</span>
+                    </div>
+                </div>
 
-            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
-                <i class="fa fa-envelope"></i>
-            </a>
-            <span class="counter">2</span>
+                <div *ngIf="loggedIn" class="popover-wrapper" style="position:relative">
+                    <sat-popover #messPopover horizontalAlign="after" verticalAlign="below" hasBackdrop>
+                        <div class="list-group" style="min-width: 250px; max-width: 400px">
+                            <a *ngFor="let mess of messages" class="list-group-item list-group-item-action flex-column align-items-start" >
+                                <div class="d-flex w-100 justify-content-between">
+                                    <span>Recieved message</span>
+                                    <small>{{mess.date | timeAgo}}</small>
+                                </div>
+                                <p class="mb-1">From: {{mess.senderEmail}}</p>
+                            </a>
+                        </div>
+                    </sat-popover>
 
-
-            <a class="btn-floating btn-sm peach-gradient waves-light" mdbRippleRadius>
-                <i class="fa fa-bell"></i>
-            </a>
-            <span class="counter">4</span>
-
+                    <div class="badge-wrapper">
+                        <a  class="btn-floating btn-sm peach-gradient waves-light" [satPopoverAnchorFor]="messPopover"
+                                (click)="messPopover.toggle()" mdbRippleRadius>
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                        <span *ngIf="unreadMessages" class="counter">{{unreadMessages}}</span>
+                    </div>
+                </div>
+            </div>
         </logo>
 
-        <links>
-            <ul class="navbar-nav mr-auto">
+
+
+        <links style="align-self:center">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item active waves-light" mdbRippleRadius>
                     <a class="nav-link" routerLink="/home">Home</a>
                 </li>
@@ -39,11 +69,20 @@
                     <a class="nav-link" (click)="logout()">Logout</a>
                 </li>
             </ul>
+
+
+
+
+
+
+
         </links>
 
 
     </mdb-navbar>
 </header>
+
+
 
 
 

@@ -1,12 +1,9 @@
-<!-- SideNav slide-out button -->
-<a (click)="sidenav.toggle()" class="btn btn-primary p-3 button-collapse">
+<!-- <a (click)="sidenav.toggle()" class="btn btn-primary p-3 button-collapse">
 	<i class="fa fa-bars"></i>
 </a>
-<!--/. SideNav slide-out button -->
 
-<!-- Sidebar navigation -->
-<mdb-sidenav #sidenav class="fixed" [fixed]="true">
-	<!-- Logo -->
+<mdb-sidenav #sidenav class="side-nav sn-bg-4 fixed " [fixed]="true">
+	
 	<li>
 		<div class="logo-wrapper waves-light">
 			<a href="#">
@@ -14,8 +11,7 @@
 			</a>
 		</div>
 	</li>
-	<!--/. Logo -->
-	<!--Social-->
+
 	<li>
 		<ul class="social">
 			<li>
@@ -40,50 +36,37 @@
 			</li>
 		</ul>
 	</li>
-	<!--/Social-->
-	<!--Search Form-->
-	<li>
-		<form class="search-form" role="search">
-			<div class="form-group waves-light" mdbRippleRadius>
-				<input type="text" class="form-control" placeholder="Search">
-			</div>
-		</form>
-	</li>
-	<!--/.Search Form-->
-	<!-- Side navigation links -->
+
 	<li>
 		<ul class="collapsible collapsible-accordion">
 			<mdb-squeezebox [multiple]="false" aria-multiselectable="false">
 
-				<!-- Collapsible link -->
 				<mdb-item>
 					<mdb-item-head mdbRippleRadius>
 						<a routerLink="/admin/users">
 							<span>
 								<i class="fa fa-user"></i>
 							</span>
-							<span>Users {{usersCount}}</span>
+							<span>All Users {{allUsersCount}}</span>
 						</a>
 					</mdb-item-head>
 					<mdb-item-body>
 						<ul>
 							<li>
-								<a href="#" class="waves-effect" mdbRippleRadius>Users</a>
+								<a href="#" class="waves-effect" mdbRippleRadius>Users {{usersCount}}</a>
 							</li>
 							<li>
-								<a href="#" class="waves-effect" mdbRippleRadius>Beekeepers</a>
+								<a href="#" class="waves-effect" mdbRippleRadius>Beekeepers {{beekeepersCount}}</a>
 							</li>
 							<li>
-								<a href="#" class="waves-effect" mdbRippleRadius>Buyers</a>
+								<a href="#" class="waves-effect" mdbRippleRadius>Buyers {{buyersCount}}</a>
 							</li>
 							<li>
-								<a href="#" class="waves-effect" mdbRippleRadius>Partners</a>
+								<a href="#" class="waves-effect" mdbRippleRadius>Partners {{partnersCount}}</a>
 							</li>
 						</ul>
 					</mdb-item-body>
 				</mdb-item>
-
-				<!-- Simple link -->
 
 				<mdb-item class="no-collase">
 					<mdb-item-head mdbRippleRadius>
@@ -97,7 +80,6 @@
 					<mdb-item-body></mdb-item-body>
 				</mdb-item>
 
-				<!-- Collapsible link -->
 				<mdb-item class="no-collase">
 					<mdb-item-head mdbRippleRadius>
 						<a routerLink="/admin/testimonials">
@@ -111,7 +93,6 @@
 					</mdb-item-body>
 				</mdb-item>
 
-				<!-- Simple link -->
 				<mdb-item class="no-collase">
 					<mdb-item-head mdbRippleRadius>
 						<a routerLink="/admin/products">
@@ -215,10 +196,256 @@
 			</mdb-squeezebox>
 		</ul>
 	</li>
-	<!--/. Side navigation links -->
 	<div class="sidenav-bg mask-strong"></div>
 </mdb-sidenav>
-<!--/. Sidebar navigation -->
 <main>
 	<router-outlet></router-outlet>
-</main>
+</main> -->
+
+<body class="fixed-sn light-blue-skin">
+
+	<header>
+		<mdb-sidenav #sidenav class=" sn-bg-4 fixed fixed" [fixed]="true">
+
+			<li>
+				<div class="logo-wrapper waves-light">
+					<a href="#">
+						<img src="http://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center">
+					</a>
+				</div>
+			</li>
+
+			<li>
+				<ul class="social">
+					<li>
+						<a class="icons-sm fb-ic">
+							<i class="fa fa-facebook"> </i>
+						</a>
+					</li>
+					<li>
+						<a class="icons-sm pin-ic">
+							<i class="fa fa-pinterest"> </i>
+						</a>
+					</li>
+					<li>
+						<a class="icons-sm gplus-ic">
+							<i class="fa fa-google-plus"> </i>
+						</a>
+					</li>
+					<li>
+						<a class="icons-sm tw-ic">
+							<i class="fa fa-twitter"> </i>
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				<ul class="collapsible collapsible-accordion">
+					<mdb-squeezebox [multiple]="false" aria-multiselectable="false">
+
+						<mdb-item>
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/users">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>All Users {{allUsersCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body>
+								<ul>
+									<li>
+										<a href="#" class="waves-effect" mdbRippleRadius>Users {{usersCount}}</a>
+									</li>
+									<li>
+										<a href="#" class="waves-effect" mdbRippleRadius>Beekeepers {{beekeepersCount}}</a>
+									</li>
+									<li>
+										<a href="#" class="waves-effect" mdbRippleRadius>Buyers {{buyersCount}}</a>
+									</li>
+									<li>
+										<a href="#" class="waves-effect" mdbRippleRadius>Partners {{partnersCount}}</a>
+									</li>
+								</ul>
+							</mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/orders">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Orders {{ordersCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/testimonials">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Testimonials {{testimonialsCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body>
+							</mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/products">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Products {{productsCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/honeys">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Honeys {{honeysCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/subscriptions">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Subscriptions {{subscriptionsCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/notifications">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Notifications {{notificationsCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/messages">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Messages {{messagesCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/partnership-requests">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Partnership requests {{requestsCount}}</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+
+
+
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a routerLink="/admin/company-info">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Company Info</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+						<mdb-item class="no-collase">
+							<mdb-item-head mdbRippleRadius>
+								<a (click)="logout()" routerLink="/home">
+									<span>
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Logout</span>
+								</a>
+							</mdb-item-head>
+							<mdb-item-body></mdb-item-body>
+						</mdb-item>
+
+					</mdb-squeezebox>
+				</ul>
+			</li>
+			<div class="sidenav-bg mask-strong"></div>
+		</mdb-sidenav>
+
+		<nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+
+			<div class="float-left">
+				<a (click)="sidenav.toggle()" class="button-collapse">
+					<i class="fa fa-bars"></i>
+				</a>
+			</div>
+
+
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+				<li class="nav-item">
+					<a class="nav-link">
+						<i class="fa fa-envelope"></i>
+						<span class="clearfix d-none d-sm-inline-block">Contact</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">
+						<i class="fa fa-comments-o"></i>
+						<span class="clearfix d-none d-sm-inline-block">Support</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">
+						<i class="fa fa-user"></i>
+						<span class="clearfix d-none d-sm-inline-block">Account</span>
+					</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Dropdown
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<router-outlet></router-outlet>
+	</main>
+
+</body>

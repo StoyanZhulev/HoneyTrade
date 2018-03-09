@@ -18,16 +18,25 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/state/app-state';
 import { ResetUserAction } from '../../../store/actions/user.actions';
 import { ResetAdminAction } from '../../../store/actions/subscription.actions';
+import {  selectAllUsers, selectAllOrders, selectAllSubscriptions } from '../../../store/reducers/admin-reducer/admin.reducer';
+import { selectPartners, selectTestimonials, selectProducts, selectHoneys } from '../../../store/reducers/root-reducers/index';
+import { selectUserNotifications } from '../../../store/reducers/user-reducers/user.reducer';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+
+  public allUsersCount: number;
+  public usersCount: number;
+  public beekeepersCount: number;
+  public buyersCount: number;
+  public partnersCount: number;
+
   public ordersCount: number;
   public notificationsCount: number;
   public messagesCount: number;
-  public usersCount: number;
   public testimonialsCount: number;
   public subscriptionsCount: number;
   public productsCount: number;
@@ -39,15 +48,7 @@ export class AdminComponent implements OnInit {
     private headerService: HeaderService,
     private socketService: SocketService,
     private router: Router,
-    private adminOrdersService: AdminOrdersService,
-    private notificationService: NotificationService,
-    private adminUsersService: AdminUserService,
-    private messageService: MessageService,
-    private testimonialsService: TestimonialsService,
-    private adminSubscriptionsService: AdminSubscriptionService,
-    private productsService: ProductsService,
-    private adminPartnershipRequestsservice: AdminPartneshipRequestsService,
-    private honeyService: HoneyService,
+  
     private store: Store<AppState>
   ) {
 
@@ -55,41 +56,39 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.socketService.getAdminState();
-    this.adminOrdersService.ordersRecieved$.subscribe(orders => {
-      this.ordersCount = orders.length;
-    })
 
-    this.notificationService.notificationsRecieved$.subscribe(nots => {
-      this.notificationsCount = nots.filter(n => n.isRead === false).length;
-    })
+    this.store.select(selectAllUsers).subscribe(data => {
+      this.allUsersCount = data.count;
+      this.usersCount = data.users.length;
+      this.beekeepersCount = data.beekeepers.length;
+      this.buyersCount = data.buyers.length;
+    });
 
-    this.messageService.messagesRecieved$.subscribe(messages => {
-      this.messagesCount = messages.length;
-    })
+    this.store.select(selectPartners).subscribe(data => {
+      this.partnersCount = data.length;
+    });
 
-    this.adminUsersService.usersCountRecieved$.subscribe(usersCount => {
-      this.usersCount = usersCount;
-    })
+    this.store.select(selectAllOrders).subscribe(data => {
+      this.ordersCount = data.length;
+    });
 
-    this.testimonialsService.testimonialsRecieved$.subscribe(testimonials => {
-      this.testimonialsCount = testimonials.length;
-    })
+    this.store.select(selectTestimonials).subscribe(data => {
+      this.testimonialsCount = data.length;
+    });
 
-    this.adminSubscriptionsService.subscriptionsRecieved$.subscribe(subs => {
-      this.subscriptionsCount = subs.length;
-    })
+    this.store.select(selectProducts).subscribe(data => {
+      this.productsCount = data.length;
+    });
 
-    this.productsService.productsRecieved$.subscribe(prods => {
-      this.productsCount = prods.length;
-    })
+    this.store.select(selectHoneys).subscribe(data => {
+      this.honeysCount = data.length
+    });
 
-    this.adminPartnershipRequestsservice.requestsRecieved$.subscribe(requests => {
-      this.requestsCount = requests.length;
-    })
+    this.store.select(selectAllSubscriptions).subscribe(data => {
+      this.subscriptionsCount = data.length;
+    });
 
-    this.honeyService.honeysRecieved$.subscribe(honeys => {
-      this.honeysCount = honeys.length;
-    })
+    this.router.navigateByUrl('admin/intro')
   }
 
   logout() {

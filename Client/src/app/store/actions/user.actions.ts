@@ -6,7 +6,14 @@ export const UserActions = {
     GET_USER_MESSAGES_SUCCESS: 'GET_USER_MESSAGES_SUCCESS',
     GET_USER_NOTIFICATIONS_SUCCESS: 'GET_USER_NOTIFICATIONS_SUCCESS',
     GET_USER_SUBSCRIPTIONS_SUCCESS: 'GET_USER_SUBSCRIPTIONS_SUCCESS',
-    GET_USER_SUBSCRIPTIONS_FAIL: 'GET_USER_SUBSCRIPTIONS_FAIL'
+    GET_USER_SUBSCRIPTIONS_FAIL: 'GET_USER_SUBSCRIPTIONS_FAIL',
+    GET_ALL_USERS_SUCCESS: 'GET_ALL_USERS_SUCCESS'
+}
+
+export class GetAllUsersSuccessAction implements Action {
+    type: string = UserActions.GET_ALL_USERS_SUCCESS
+    constructor(public payload: any) {
+    }
 }
 
 export class GetUserSuccessAction implements Action {

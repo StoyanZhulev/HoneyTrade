@@ -17,178 +17,209 @@ const PartnershipRequest = require('mongoose').model('PartnershipRequest');
 
 
 module.exports = (server) => {
-    let io = require('socket.io')(server);
+  let io = require('socket.io')(server);
 
-    io.on('connection', async (socket) => {
-        
+  io.on('connection', async (socket) => {
+
     console.log(Object.keys(io.sockets.sockets).length)
     console.log('socket connected ' + socket.id)
 
 
     socket.on('getCurrentUserInfo', async (email) => {
-        let user = await getUser(email);
-        socket.emit('currentUser', user)
+      let user = await getUser(email);
+      socket.emit('currentUser', user)
     })
 
-        let testimonials = await Testimonial.find();
-        socket.emit('testimonials', testimonials);
+    let testimonials = await Testimonial.find();
+    socket.emit('testimonials', testimonials);
 
-        let products = await Product.find();
-        socket.emit('products', products);
+    let products = await Product.find();
+    socket.emit('products', products);
 
-        let honeys = await Honey.find();
-        socket.emit('honeys', honeys);
+    let honeys = await Honey.find();
+    socket.emit('honeys', honeys);
 
-        let companyInfo = await CompanyInfo.findOne();
-        socket.emit('companyInfo', companyInfo);
+    let companyInfo = await CompanyInfo.findOne();
+    socket.emit('companyInfo', companyInfo);
 
-        let partners = await Partner.find({}).populate('company', '_id companyName companyLocation companyInformation email logoUmageUrl').populate('orders');
-        socket.emit('partners', partners)
+    let partners = await Partner.find({}).populate('company', '_id companyName companyLocation companyInformation email logoUmageUrl').populate('orders');
+    socket.emit('partners', partners)
 
-        socket.on('userEmail', async (userEmail) => {
-            socket['userEmail'] = userEmail;
-            let messages = await Message.find({ recieverEmail: socket.userEmail })
-            socket.emit('messages', messages)
+    socket.on('userEmail', async (userEmail) => {
+      socket['userEmail'] = userEmail;
+      let messages = await Message.find({ recieverEmail: socket.userEmail })
+      socket.emit('messages', messages)
 
-            let nots = await Notification.find({ recieverEmail: socket.userEmail })
-            socket.emit('notifications', nots);
+      let nots = await Notification.find({ recieverEmail: socket.userEmail })
+      socket.emit('notifications', nots);
 
 
-            let subscr = await Subscription.find({ subscriberEmail: socket.userEmail })
-            socket.emit('subscriptions', subscr);
+      let subscr = await Subscription.find({ subscriberEmail: socket.userEmail })
+      socket.emit('subscriptions', subscr);
 
-            let admin = await Admin.findOne({ email: userEmail })
-            if (admin) {
-                socket.on('getAdminState', async () => {
-                    let userRoles = await UserRole.find();
-                    socket.emit('admin-users-count', userRoles.length);
-    
-                    let users = await User.find();
-                    socket.emit('admin-users', users);
-    
-                    let beekeepers = await Beekeeper.find();
-                    socket.emit('admin-beekeepers', beekeepers);
-    
-                    let buyers = await Buyer.find();
-                    socket.emit('admin-buyers', buyers);
-    
-                    // let partners = await Partner.find().populate('company');
-                    // socket.emit('admin-partners', partners);
-    
-                    let subs = await Subscription.find()
-                    socket.emit('admin-subscriptions', subs);
-    
-                    let orders = await Order.find().populate('product')
-                    socket.emit('admin-orders', orders);
-    
-                    let partnRequests = await PartnershipRequest.find().populate('company');
-                    socket.emit('admin-partnership-requests', partnRequests);
-                })
-                // let userRoles = await UserRole.find();
-                // socket.emit('admin-users-count', userRoles.length);
+      let admin = await Admin.findOne({ email: userEmail })
+      if (admin) {
+        socket.on('getAdminState', async () => {
+          let userRoles = await UserRole.find();
+          socket.emit('admin-users-count', userRoles.length);
 
-                // let users = await User.find();
-                // socket.emit('admin-users', users);
-
-                // let beekeepers = await Beekeeper.find();
-                // socket.emit('admin-beekeepers', beekeepers);
-
-                // let buyers = await Buyer.find();
-                // socket.emit('admin-buyers', buyers);
-
-                // // let partners = await Partner.find().populate('company');
-                // // socket.emit('admin-partners', partners);
-
-                // let subs = await Subscription.find()
-                // socket.emit('admin-subscriptions', subs);
-
-                // let orders = await Order.find().populate('product')
-                // socket.emit('admin-orders', orders);
-
-                // let partnRequests = await PartnershipRequest.find().populate('company');
-                // socket.emit('admin-partnership-requests', partnRequests);
+          let users = await User.find();
+          users = users.map(e => {
+            return {
+              'id': e._id,
+              'firstName': e.firstName,
+              'lastName': e.lastName,
+              'email': e.email,
+              'dateRegistered': e.dateRegistered,
+              'role': 'user'
             }
+          })
+          let beekeepers = await Beekeeper.find();
+          beekeepers = beekeepers.map(e => {
+            return {
+              'id': e._id,
+              'companyName': e.companyName,
+              'firstName': e.firstName,
+              'lastName': e.lastName,
+              'location': e.location,
+              'email': e.email,
+              'dateRegistered': e.dateRegistered,
+              'role': 'beekeeper'
+            }
+          })
+          let buyers = await Buyer.find();
+          buyers = buyers.map(e => { return {
+            'id': e._id,
+            'companyName': e.companyName,
+            'companyInformation': e.companyInformation,
+            'companyLocation': e.companyLocation,
+            'email': e.email,
+            'logo': e.logoImageUrl,
+            'dateRegistered': e.dateRegistered,     
+            'role': 'buyer'     
+          }})
 
-            socket.on('disconnect', () => {
+          let count = users.length + beekeepers.length + buyers.length
+          let allUsers = { users: users, beekeepers: beekeepers, buyers: buyers, count: count }
+          socket.emit('admin-users', allUsers);
 
-                console.log(`Deleting socket: ${socket.id}`);
-                let i = delete io.sockets.sockets[socket.id]
-            });
+          // let partners = await Partner.find().populate('company');
+          // socket.emit('admin-partners', partners);
 
-            
+          let subs = await Subscription.find()
+          socket.emit('admin-subscriptions', subs);
+
+          let orders = await Order.find().populate('product')
+          socket.emit('admin-orders', orders);
+
+          let partnRequests = await PartnershipRequest.find().populate('company', '_id companyName companyLocation companyInformation email logoUmageUrl');
+          socket.emit('admin-partnership-requests', partnRequests);
         })
+        // let userRoles = await UserRole.find();
+        // socket.emit('admin-users-count', userRoles.length);
 
-    });
+        // let users = await User.find();
+        // socket.emit('admin-users', users);
 
-    return io;
+        // let beekeepers = await Beekeeper.find();
+        // socket.emit('admin-beekeepers', beekeepers);
+
+        // let buyers = await Buyer.find();
+        // socket.emit('admin-buyers', buyers);
+
+        // // let partners = await Partner.find().populate('company');
+        // // socket.emit('admin-partners', partners);
+
+        // let subs = await Subscription.find()
+        // socket.emit('admin-subscriptions', subs);
+
+        // let orders = await Order.find().populate('product')
+        // socket.emit('admin-orders', orders);
+
+        // let partnRequests = await PartnershipRequest.find().populate('company');
+        // socket.emit('admin-partnership-requests', partnRequests);
+      }
+
+      socket.on('disconnect', () => {
+
+        console.log(`Deleting socket: ${socket.id}`);
+        let i = delete io.sockets.sockets[socket.id]
+      });
+
+
+    })
+
+  });
+
+  return io;
 }
 
-async function getUser(email){
-    let user = await UserRole.findOne({ email: email });
+async function getUser(email) {
+  let user = await UserRole.findOne({ email: email });
 
-    let ispartner = false;
-   
+  let ispartner = false;
 
-    switch (user.role) {
-      case 'user':
-        userData = await User.findOne({ email: user.email });
-        userToReturn = {
-          'id': userData._id,
-          'firstName': userData.firstName,
-          'lastName': userData.lastName,
-          'email': userData.email,
-          'dateRegistered': userData.dateRegistered,          
-          'role': 'user'
-        }
-        break;
-      case 'beekeeper':
-        userData = await Beekeeper.findOne({ email: user.email });
-     
-        userToReturn = {
-          'id': userData._id,
-          'companyName': userData.companyName,
-          'firstName': userData.firstName,
-          'lastName': userData.lastName,
-          'location': userData.location,
-          'email': userData.email,
-          'dateRegistered': userData.dateRegistered,
-          'role': 'beekeeper'
-        }
-        break;
-      case 'buyer':
-        userData = await Buyer.findOne({ email: user.email });
-        ispartner = await Partner.findOne({ companyEmail: user.email }).populate('orders');
-        userToReturn = {
-          'id': userData._id,
-          'companyName': userData.companyName,
-          'companyInformation': userData.companyInformation,
-          'companyLocation': userData.companyLocation,
-          'email': userData.email,
-          'logo': userData.logoImageUrl,
-          'dateRegistered': userData.dateRegistered,          
-        }
 
-        if (ispartner) {
-          userToReturn['role'] = 'partner'
-          userToReturn['orders'] = ispartner.orders;
-        } else {
-          userToReturn['role'] = 'buyer'
-        }
-        break;
-      case 'admin':
-        userData = await Admin.findOne({ email: user.email });
-        userToReturn = {
-          'id': userData._id,
-          'companyName': userData.companyName,
-          'companyInformation': userData.companyInformation,
-          'companyLocation': userData.companyLocation,
-          'email': userData.email,
-          'role': 'admin'
-        }
-        break;
-      default:
-        break;
-    }
+  switch (user.role) {
+    case 'user':
+      userData = await User.findOne({ email: user.email });
+      userToReturn = {
+        'id': userData._id,
+        'firstName': userData.firstName,
+        'lastName': userData.lastName,
+        'email': userData.email,
+        'dateRegistered': userData.dateRegistered,
+        'role': 'user'
+      }
+      break;
+    case 'beekeeper':
+      userData = await Beekeeper.findOne({ email: user.email });
 
-    return userToReturn;
+      userToReturn = {
+        'id': userData._id,
+        'companyName': userData.companyName,
+        'firstName': userData.firstName,
+        'lastName': userData.lastName,
+        'location': userData.location,
+        'email': userData.email,
+        'dateRegistered': userData.dateRegistered,
+        'role': 'beekeeper'
+      }
+      break;
+    case 'buyer':
+      userData = await Buyer.findOne({ email: user.email });
+      ispartner = await Partner.findOne({ companyEmail: user.email }).populate('orders');
+      userToReturn = {
+        'id': userData._id,
+        'companyName': userData.companyName,
+        'companyInformation': userData.companyInformation,
+        'companyLocation': userData.companyLocation,
+        'email': userData.email,
+        'logo': userData.logoImageUrl,
+        'dateRegistered': userData.dateRegistered,
+      }
+
+      if (ispartner) {
+        userToReturn['role'] = 'partner'
+        userToReturn['orders'] = ispartner.orders;
+      } else {
+        userToReturn['role'] = 'buyer'
+      }
+      break;
+    case 'admin':
+      userData = await Admin.findOne({ email: user.email });
+      userToReturn = {
+        'id': userData._id,
+        'companyName': userData.companyName,
+        'companyInformation': userData.companyInformation,
+        'companyLocation': userData.companyLocation,
+        'email': userData.email,
+        'role': 'admin'
+      }
+      break;
+    default:
+      break;
+  }
+
+  return userToReturn;
 }

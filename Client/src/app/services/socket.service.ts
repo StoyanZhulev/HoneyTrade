@@ -22,9 +22,11 @@ import { GetTestimonialSuccessAction } from '../store/actions/testimonial.action
 import { GetProductsSuccessAction } from '../store/actions/product.actions';
 import { GetHoneySuccessAction } from '../store/actions/honey.actions';
 import { GetCompanyInfoSuccessAction } from '../store/actions/company-info.action';
-import { GetUserNotificationsSuccessAction, GetUserMessagesSuccessAction, GetUserSuccessAction, GetUserSubscriptionsSuccessAction } from '../store/actions/user.actions';
+import { GetUserNotificationsSuccessAction, GetUserMessagesSuccessAction, GetUserSuccessAction, GetUserSubscriptionsSuccessAction, GetAllUsersSuccessAction } from '../store/actions/user.actions';
 import { GetPartnersSuccessAction } from '../store/actions/partner.actions';
 import { GetSubscriptionsSuccessAction } from '../store/actions/subscription.actions';
+import { GetGetAllOrdersSuccessAction } from '../store/actions/order.actions';
+import { GetAllPartnershipRequestsSuccessAction } from '../store/actions/partnership-request.actions';
 
 @Injectable()
 export class SocketService {
@@ -63,22 +65,18 @@ export class SocketService {
 
     this.socket.on('testimonials', testimonials => {
       this.store.dispatch(new GetTestimonialSuccessAction(testimonials));
-      this.TestimonialsService.updateTestimonials(testimonials);
     })
 
     this.socket.on('products', products => {
       this.store.dispatch(new GetProductsSuccessAction(products));
-      this.productsService.updateProducts(products);
     })
 
     this.socket.on('honeys', honeys => {
       this.store.dispatch(new GetHoneySuccessAction(honeys));
-      this.honeyService.updateHoneys(honeys);
     })
 
     this.socket.on('companyInfo', info => {
       this.store.dispatch(new GetCompanyInfoSuccessAction(info));
-      this.companyInfoService.updateCompanyInfo(info);
     })
 
     this.socket.on('partners', partners => {
@@ -88,15 +86,14 @@ export class SocketService {
     //if (email === 'admin@honeymarket.com') {
       this.socket.on('admin-subscriptions', subs => {
         this.store.dispatch(new GetSubscriptionsSuccessAction(subs));
-        this.adminSubscriptionService.updateSubscriptions(subs);
       })
 
       this.socket.on('admin-orders', orders => {
-        this.adminOrdersService.updateOrders(orders);
+        this.store.dispatch(new GetGetAllOrdersSuccessAction(orders));
       })
 
       this.socket.on('admin-partnership-requests', requests => {
-        this.adminPartnershipRequestsService.updateRequests(requests)
+        this.store.dispatch(new GetAllPartnershipRequestsSuccessAction(requests));
       })
 
       this.socket.on('admin-users-count', count => {
@@ -104,32 +101,16 @@ export class SocketService {
       })
 
       this.socket.on('admin-users', users => {
-        this.adminUsersService.updateUsers(users);
-      })
-
-      this.socket.on('admin-beekeepers', users => {
-        this.adminUsersService.updateBeekeepers(users);
-      })
-
-      this.socket.on('admin-buyers', users => {
-        this.adminUsersService.updateBuyers(users);
-      })
-
-      this.socket.on('admin-partners', users => {
-        this.adminUsersService.updatePartners(users);
+       this.store.dispatch(new GetAllUsersSuccessAction(users));
       })
    // }
 
     this.socket.on('notifications', nots => {
-      console.log('notifications', nots)
       this.store.dispatch(new GetUserNotificationsSuccessAction(nots));
-      this.notificationService.updateNotifications(nots);
     })
 
     this.socket.on('messages', messages => {
-      console.log('messages', messages)
       this.store.dispatch(new GetUserMessagesSuccessAction(messages))
-      this.messageService.updateMessages(messages);
     })
 
     this.socket.on('subscriptions', subscr => {
@@ -137,7 +118,6 @@ export class SocketService {
     })
 
     this.socket.on('currentUser', u => {
-      console.log(u)
       this.store.dispatch(new GetUserSuccessAction(u))
     })
 

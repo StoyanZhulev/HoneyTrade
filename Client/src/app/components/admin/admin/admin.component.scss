@@ -228,3 +228,16 @@
 // 	border: 1px solid #ddd;
 // } */
 
+
+
+
+.badge-wrapper {
+    position: relative;
+}
+
+.badge-wrapper .counter {
+    position: absolute;
+    top:0;
+    right: 0;
+    margin: 5px;
+}

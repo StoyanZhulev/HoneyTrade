@@ -4,6 +4,10 @@ import { CommonModule } from "@angular/common"
 import { RouterModule } from "@angular/router"
 import { MDBBootstrapModules } from 'ng-mdb-pro';
 import { HomeComponent } from "./home/home.component";
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { SatPopoverModule } from '@ncstate/sat-popover';
 
 
 import { AuthenticationModule } from '../auth/auth.module';
@@ -12,6 +16,8 @@ import { AgmCoreModule } from '@agm/core';
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    SatPopoverModule,
     RouterModule,
     MDBBootstrapModules,
     AuthenticationModule,
@@ -20,6 +26,7 @@ import { AgmCoreModule } from '@agm/core';
     }),
   ],
   declarations: [
+    TimeAgoPipe,
     ...sharedComponents
   ],
   exports: [

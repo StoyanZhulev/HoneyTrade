@@ -20,13 +20,6 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private store: Store<AppState>
   ) {
-      // this.store.select('partners').subscribe(data => {
-      //   this.partners = data.partners.sort((a, b) => b.orders.length - a.orders.length);
-      //   this.topPartners = this.partners.slice(0, 2);
-      //   console.log(this.topPartners)
-      //   console.log(this.partners)
-        
-      // })
    }
 
   ngOnInit() {
