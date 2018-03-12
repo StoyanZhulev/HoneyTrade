@@ -440,7 +440,53 @@
 						<a class="dropdown-item" href="#">Something else here</a>
 					</div>
 				</li>
+			
 			</ul>
+			<div class="d-flex">
+                <div class="popover-wrapper" style="position:relative">
+                    <sat-popover #notsPopover horizontalAlign="after" verticalAlign="below" hasBackdrop>
+                        <div class="list-group" style="min-width: 250px; max-width: 400px; max-height:500px; overflow:auto">
+                            <a *ngFor="let not of notifications" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{not.title}}</h5>
+                                    <small>{{not.date | timeAgo}}</small>
+                                </div>
+                                <p class="mb-1">{{not.text}}</p>
+                            </a>
+                        </div>
+                    </sat-popover>
+                    <div class="badge-wrapper">
+                        <a  class="btn-floating btn-sm peach-gradient waves-light" [satPopoverAnchorFor]="notsPopover"
+                            (click)="notsPopover.toggle()" mdbRippleRadius>
+                            <i class="fa fa-bell"></i>
+                        </a>
+
+                        <span *ngIf="unreadNotifications" class="counter">{{unreadNotifications}}</span>
+                    </div>
+                </div>
+
+                <div class="popover-wrapper" style="position:relative">
+                    <sat-popover #messPopover horizontalAlign="after" verticalAlign="below" hasBackdrop>
+                        <div class="list-group" style="min-width: 250px; max-width: 400px; max-height:500px; overflow:auto">
+                            <a *ngFor="let mess of messages" class="list-group-item list-group-item-action flex-column align-items-start" >
+                                <div class="d-flex w-100 justify-content-between">
+                                    <span>Recieved message</span>
+                                    <small>{{mess.date | timeAgo}}</small>
+                                </div>
+                                <p class="mb-1">From: {{mess.senderEmail}}</p>
+                            </a>
+                        </div>
+                    </sat-popover>
+
+                    <div class="badge-wrapper">
+                        <a  class="btn-floating btn-sm peach-gradient waves-light" [satPopoverAnchorFor]="messPopover"
+                                (click)="messPopover.toggle()" mdbRippleRadius>
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                        <span *ngIf="unreadMessages" class="counter">{{unreadMessages}}</span>
+                    </div>
+                </div>
+            </div>
 		</nav>
 	</header>
 

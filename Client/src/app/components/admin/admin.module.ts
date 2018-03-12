@@ -14,6 +14,8 @@ import { adminReducer } from "../../store/reducers/admin-reducer/admin.reducer";
 
 import { SatPopoverModule } from '@ncstate/sat-popover';
 
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoModule } from "../time-ago/time-ago.module";
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
     SatPopoverModule,
     RouterModule.forChild(routes),
     MDBBootstrapModules,
-    
+    TimeAgoModule,
      StoreModule.forFeature('admin', adminReducer)
   ],
   declarations: [

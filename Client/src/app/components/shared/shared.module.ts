@@ -12,6 +12,7 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 
 import { AuthenticationModule } from '../auth/auth.module';
 import { AgmCoreModule } from '@agm/core';
+import { TimeAgoModule } from '../time-ago/time-ago.module';
 
 @NgModule({
   imports: [
@@ -21,13 +22,13 @@ import { AgmCoreModule } from '@agm/core';
     RouterModule,
     MDBBootstrapModules,
     AuthenticationModule,
+    TimeAgoModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHLwBs5R58FG1WXDqxzwx_ExpQK4BiTIQ'
     }),
   ],
   declarations: [
-    TimeAgoPipe,
-    ...sharedComponents
+    ...sharedComponents,
   ],
   exports: [
     ...sharedComponents

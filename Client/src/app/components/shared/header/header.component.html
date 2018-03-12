@@ -30,7 +30,7 @@
 
                 <div *ngIf="loggedIn" class="popover-wrapper" style="position:relative">
                     <sat-popover #messPopover horizontalAlign="after" verticalAlign="below" hasBackdrop>
-                        <div class="list-group" style="min-width: 250px; max-width: 400px">
+                        <div class="list-group" style="min-width: 250px; max-width: 400px; max-height:500px; overflow:auto">
                             <a *ngFor="let mess of messages" class="list-group-item list-group-item-action flex-column align-items-start" >
                                 <div class="d-flex w-100 justify-content-between">
                                     <span>Recieved message</span>

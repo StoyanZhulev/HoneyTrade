@@ -20,7 +20,8 @@ import { ResetUserAction } from '../../../store/actions/user.actions';
 import { ResetAdminAction } from '../../../store/actions/subscription.actions';
 import {  selectAllUsers, selectAllOrders, selectAllSubscriptions } from '../../../store/reducers/admin-reducer/admin.reducer';
 import { selectPartners, selectTestimonials, selectProducts, selectHoneys } from '../../../store/reducers/root-reducers/index';
-import { selectUserNotifications } from '../../../store/reducers/user-reducers/user.reducer';
+import { selectUserNotifications, selectUserMessages } from '../../../store/reducers/user-reducers/user.reducer';
+import { Message } from '../../../models/view-models/message.model';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -35,8 +36,13 @@ export class AdminComponent implements OnInit {
   public partnersCount: number;
 
   public ordersCount: number;
-  public notificationsCount: number;
-  public messagesCount: number;
+
+  public notifications: Notification[];
+  public unreadNotifications: number;
+
+  public messages: Message[]
+  public unreadMessages: number;
+
   public testimonialsCount: number;
   public subscriptionsCount: number;
   public productsCount: number;
@@ -87,6 +93,16 @@ export class AdminComponent implements OnInit {
     this.store.select(selectAllSubscriptions).subscribe(data => {
       this.subscriptionsCount = data.length;
     });
+
+    this.store.select(selectUserNotifications).subscribe((data: Notification[]) => {
+      this.notifications = data;
+      this.unreadNotifications = data.filter(e => e.isRead === false).length;
+    })
+
+    this.store.select(selectUserMessages).subscribe((data: Message[]) => {
+      this.messages = data;
+      this.unreadMessages = data.filter(e => e.isRead === false).length
+    })
 
     this.router.navigateByUrl('admin/intro')
   }
