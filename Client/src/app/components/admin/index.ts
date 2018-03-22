@@ -14,6 +14,7 @@ import { BeekeeperDetailsComponent } from './beekeeper-details/beekeeper-details
 import { BuyerDetailsComponent } from './buyer-details/buyer-details.component';
 import { PartnerDetailsComponent } from './partner-details/partner-details.component';
 import { IntroComponent } from './intro/intro.component';
+import { UsersChartComponent } from "./intro/users-chart/users-chart.component";
 
 export const adminComponents = [
   AdminComponent,
@@ -31,5 +32,6 @@ export const adminComponents = [
   BeekeeperDetailsComponent,
   BuyerDetailsComponent,
   PartnerDetailsComponent,
-  IntroComponent
+  IntroComponent,
+  UsersChartComponent
 ]

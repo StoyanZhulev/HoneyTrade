@@ -16,6 +16,8 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { TimeAgoModule } from "../time-ago/time-ago.module";
+import { UsersChartComponent } from './intro/users-chart/users-chart.component';
+import { OrdersChartComponent } from './intro/orders-chart/orders-chart.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { TimeAgoModule } from "../time-ago/time-ago.module";
      StoreModule.forFeature('admin', adminReducer)
   ],
   declarations: [
-    ...adminComponents
+    ...adminComponents,
+    OrdersChartComponent,
     
   ],
   exports: [

@@ -63,4 +63,9 @@ export class LoginComponent implements OnInit {
     this.loginFormModal.show();
   }
 
+  reset(){
+    this.model.email = '';
+    this.model.password = '';
+  }
+
 }

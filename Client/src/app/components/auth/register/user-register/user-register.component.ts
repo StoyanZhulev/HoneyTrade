@@ -44,7 +44,7 @@ export class UserRegisterComponent implements OnInit {
 
     this.authService.registerUser(user).subscribe(data => {
       console.log(data)
-      close();
+      this.close();
     })
   }
 

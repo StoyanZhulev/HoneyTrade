@@ -25,6 +25,25 @@ router.get('/orders', async (req, res) => {
         })
 })
 
+router.get('/orders/:year', async (req, res) => {
+    let startStr = req.params.year +'-01-01';
+
+    let start = new Date(req.params.year +'-01-01').toISOString();
+    let end = new Date(Number(req.params.year) + 1 + '-01-01').toISOString();
+
+    let orders = await Order.find({
+         date: { 
+             "$lte": end,
+              "$gte": start
+            }
+    })
+    return res.status(200).json({
+        success: true,
+        message: 'Recieved orders',
+        orders: orders
+    })
+})
+
 router.get('/order/:id', async (req, res) => {
     Order.findById(req.params.id)
         .populate('product')

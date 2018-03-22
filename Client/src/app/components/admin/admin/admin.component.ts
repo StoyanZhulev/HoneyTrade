@@ -95,12 +95,12 @@ export class AdminComponent implements OnInit {
     });
 
     this.store.select(selectUserNotifications).subscribe((data: Notification[]) => {
-      this.notifications = data;
+      this.notifications = data.reverse();
       this.unreadNotifications = data.filter(e => e.isRead === false).length;
     })
 
     this.store.select(selectUserMessages).subscribe((data: Message[]) => {
-      this.messages = data;
+      this.messages = data.reverse();
       this.unreadMessages = data.filter(e => e.isRead === false).length
     })
 
